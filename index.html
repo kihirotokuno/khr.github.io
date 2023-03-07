@@ -1,59 +1,63 @@
+<!DOCTYPE html>
 <html>
-  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <head>
+        <meta charset="utf-8">
 
-<style>
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+        <!-- A-Frame ライブラリの読み込み -->
+        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
-</style>
+        <!-- AR.js ライブラリの読み込み -->
+        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
 
-<body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true; precision: medium;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
-    <a-nft
-      type="nft"
-      url="your-server/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <a-entity
-        gltf-model="your-server/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
-        scale="5 5 5"
-        position="150 300 -100"
-      >
-      </a-entity>
-    </a-nft>
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
-  
-  
-  
-</body></html>
+        <title>WebAR Demo</title>
+    </head>
+
+    <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+
+        <!-- 3Dオブジェクトの読み込み -->
+        <!-- OBJファイルはモデル形状、MTLファイルはテクスチャ情報 -->
+        <!-- ここで指定したIDを呼び出し時に使う -->
+        <a-assets>
+            <a-asset-item id="signpanel_mtl" src="static/models/signpanel/signpanel.mtl"></a-asset-item>
+            <a-asset-item id="signpanel_obj" src="static/models/signpanel/signpanel.obj"></a-asset-item>
+        </a-assets>
+
+        <a-assets>
+            <a-asset-item id="grass_obj" src="static/models/grass/grass.obj"></a-asset-item>
+            <a-asset-item id="grass_mtl" src="static/models/grass/grass.mtl"></a-asset-item>
+        </a-assets>
+
+        <!-- ARオブジェクトを描画するシーンの定義 -->
+        <a-scene stats embedded arjs='debugUIEnabled: false; sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
+            <!-- ARマーカに対する描画オブジェクト -->
+            <a-marker preset="custom" type="pattern" url="static/marker/pattern.patt">
+                <!-- オブジェクト1つめの配置 -->
+                <a-obj-model src="#signpanel_obj" mtl="#signpanel_mtl" position="0 0 0" rotation="-100 0 0" scale="0.05 0.05 0.05" visible="true"></a-obj-model>
+
+                <!-- a-entityタグでオブジェクトやアニメーションの定義をまとめる -->
+                <a-entity>
+                    <a-obj-model src="#grass_obj" mtl="#grass_mtl" position="-0.3 0 0" rotation="-90 0 0" scale="0.03 0.03 0.03" visible="true"></a-obj-model>
+                    <!-- アニメーションもHTMLタグで定義可能 -->
+                    <a-animation attribute="rotation" dur="5000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
+                </a-entity>
+
+                <!-- テキストも描画可能 -->
+                <a-text value="Augmented" position='-0.8 1.9 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
+                <a-text value="Reality" position='-0.3 1.3 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
+            </a-marker>
+
+            <!-- マルチマーカの場合はa-markerタグを複数書く -->
+            <a-marker preset="custom" type="pattern" url="static/marker/pattern2.patt">
+                <a-obj-model src="#signpanel_obj" mtl="#signpanel_mtl" position="0 0 0" rotation="-100 0 0" scale="0.05 0.05 0.05" visible="true"></a-obj-model>
+                <a-entity>
+                    <a-obj-model src="#grass_obj" mtl="#grass_mtl" position="-0.3 0 0" rotation="-90 0 0" scale="0.03 0.03 0.03" visible="true"></a-obj-model>
+                    <a-animation attribute="rotation" dur="5000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
+                </a-entity>
+                <a-text value="Multi Marker" position='-0.7 1.7 -0.1' rotation="0 0 0" scale="1.2 1.2 1.2" color="#111111"></a-text>
+            </a-marker>
+
+            <!-- カメラオブジェクトの配置 -->
+            <a-camera-static/>
+        </a-scene>
+    </body>
+</html>
