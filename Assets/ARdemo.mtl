@@ -1,17 +1,7 @@
 # Blender MTL File: 'None'
-# Material Count: 2
+# Material Count: 1
 
-newmtl Material.001
-Ns 323.999994
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl Material_0
+newmtl Material_0.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -20,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump /var/folders/cx/z28xts4n0c7bk_rp36py_78c0000gn/T/gltfimg-ledx9e7h/Image_1.jpg
-map_Kd /var/folders/cx/z28xts4n0c7bk_rp36py_78c0000gn/T/gltfimg-ve6ccrn7/Image_0.jpg
+map_Bump /var/folders/cx/z28xts4n0c7bk_rp36py_78c0000gn/T/gltfimg-v15lnosu/Image_1.jpg
+map_Kd /var/folders/cx/z28xts4n0c7bk_rp36py_78c0000gn/T/gltfimg-nqmty8b3/Image_0.jpg
