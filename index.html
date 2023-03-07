@@ -22,28 +22,20 @@
             <a-asset-item id="ARdemo_obj" src="Assets/ARdemo.obj"></a-asset-item>
         </a-assets>
 
-        <a-assets>
-            <a-asset-item id="grass_obj" src="static/models/grass/grass.obj"></a-asset-item>
-            <a-asset-item id="grass_mtl" src="static/models/grass/grass.mtl"></a-asset-item>
-        </a-assets>
-
         <!-- ARオブジェクトを描画するシーンの定義 -->
         <a-scene stats embedded arjs='debugUIEnabled: false; sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
             <!-- ARマーカに対する描画オブジェクト -->
             <a-marker preset="custom" type="pattern" url="Assets/pattern-qr_code.patt">
                 <!-- オブジェクト1つめの配置 -->
-                <a-obj-model src="#ARdemo_obj" mtl="#ARdemo_mtl" position="0 0 0" rotation="-100 0 0" scale="0.05 0.05 0.05" visible="true"></a-obj-model>
+                <a-obj-model src="#ARdemo_obj" mtl="#ARdemo_mtl" position="0 0 0" rotation="-100 0 0" scale="1.00 1.00 1.00" visible="true"></a-obj-model>
 
                 <!-- a-entityタグでオブジェクトやアニメーションの定義をまとめる -->
                 <a-entity>
-                    <a-obj-model src="#ARdemo_obj" mtl="#ARdemo_mtl" position="-0.3 0 0" rotation="-90 0 0" scale="0.03 0.03 0.03" visible="true"></a-obj-model>
+                    <a-obj-model src="#ARdemo_obj" mtl="#ARdemo_mtl" position="-1.0 0 0" rotation="-90 0 0" scale="1.03 1.03 1.03" visible="true"></a-obj-model>
                     <!-- アニメーションもHTMLタグで定義可能 -->
                     <a-animation attribute="rotation" dur="5000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
                 </a-entity>
 
-                <!-- テキストも描画可能 -->
-                <a-text value="Augmented" position='-0.8 1.9 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
-                <a-text value="Reality" position='-0.3 1.3 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
             </a-marker>
 
 
