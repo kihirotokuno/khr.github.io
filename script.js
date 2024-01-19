@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load 3D model (placeholder model URL)
     const loader = new THREE.GLTFLoader();
-    loader.load('path/to/your/model.gltf', (gltf) => {
+    loader.load('Assets/3dmodel/pc.glb', (gltf) => {
         const model = gltf.scene;
         model.position.set(0, 0, 0);
         model.scale.set(0.5, 0.5, 0.5); // Adjust scale based on model size
