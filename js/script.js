@@ -67,6 +67,8 @@ loader.load(
 	// called when the resource is loaded
 	function ( gltf ) {
 
+        gltf.position.set(0, 0, 0);
+
 		scene.add( gltf.scene );
 
 		gltf.animations; // Array<THREE.AnimationClip>
