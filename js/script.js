@@ -7,10 +7,10 @@ const width = window.innerWidth, height = window.innerHeight;
 
 const camera = new THREE.PerspectiveCamera(120, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(2, 0, 1);
+camera.position.set(0, 0, 1);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0x404040 );
+scene.background = new THREE.Color( 0xDAFF00 );
 
 
 // generate cube
