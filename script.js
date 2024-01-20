@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Scene and renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-    if (!renderer.extensions.get('WEBGL')) {
-        alert('WebGL is not supported in your browser. Please use a WebGL-compatible browser.');
-        return;
-    }
+    // if (!renderer.extensions.get('WEBGL')) {
+    //     alert('WebGL is not supported in your browser. Please use a WebGL-compatible browser.');
+    //     return;
+    // }
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('container').appendChild(renderer.domElement);
