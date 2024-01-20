@@ -7,7 +7,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 const camera = new THREE.PerspectiveCamera(17, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(0, 0, 10);
+camera.position.set(0, 0, 3);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xDAFF00 );
@@ -32,6 +32,7 @@ const material_hex = new THREE.MeshPhysicalMaterial({
     thickness: 0.1 // Add refraction!
 });
 const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
+mesh_hex.position.set = (0, 2, 0);
 scene.add(mesh_hex);
 
 
