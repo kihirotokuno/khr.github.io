@@ -36,13 +36,13 @@ scene.add(mesh_hex);
 
 
 //add bg pics for reflection
-const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
-const bgGeometry = new THREE.PlaneGeometry(2, 1);
-const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
-const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-bgMesh.position.set(0, 0, -3);
-bgMesh.rotation.set(0, 180, 0);
-scene.add(bgMesh);
+// const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
+// const bgGeometry = new THREE.PlaneGeometry(2, 1);
+// const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+// const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+// bgMesh.position.set(0, 0, -3);
+// bgMesh.rotation.set(0, 180, 0);
+// scene.add(bgMesh);
 
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
