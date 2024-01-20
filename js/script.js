@@ -107,6 +107,7 @@ const loader = new GLTFLoader();
 loader.load(
 	// resource URL
 	'./assets/3dmodel/pc.gltf',
+    './assets/3dmodel/icon_3d.gltf',
 	// called when the resource is loaded
 	function ( gltf ) {
 
@@ -132,6 +133,8 @@ loader.load(
 
     },
 );
+
+
 
 function animate() {
     requestAnimationFrame( animate );
