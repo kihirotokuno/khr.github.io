@@ -46,16 +46,41 @@ scene.background = new THREE.Color( 0xDAFF00 );
 // scene.add(bgMesh);
 
 
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
-renderer.setSize( width, height );
+var renderer = new THREE.WebGLRenderer({
+
+    alpha: true,
+    antialias: true
+
+});
+renderer.setClearColor(0x010101, 0);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
 //renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
+
+window.addEventListener('resize', function () {
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    renderer.setSize(width, height);
+
+    camera.aspect = width / height;
+
+    camera.updateProjectionMatrix();
+
+});
+
+
+//controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0x333333); // soft white light
 scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 10.0);
 scene.add(directionalLight);
+
 
 
 // Instantiate a loader
