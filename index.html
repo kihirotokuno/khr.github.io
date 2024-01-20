@@ -12,8 +12,12 @@
 </head>
 <body>
     <div id="container"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="script.js"></script>
+    <script type="module">
+
+        import * as THREE from './js/threejs/three.module.js'
+        import {GLTFLoader} from './js/threejs/GLTFLoader.js'
+
+    </script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
