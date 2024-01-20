@@ -24,7 +24,7 @@ document.body.appendChild( renderer.domElement );
 
 const loader = new GLTFLoader();
 
-loader.load( './Assets/3dmodel/pc.glb', function ( gltf ) {
+loader.load( './assets/3dmodel/pc.gltf', function ( gltf ) {
 
 	scene.add( gltf.scene );
 
