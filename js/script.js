@@ -80,6 +80,15 @@ const ambientLight = new THREE.AmbientLight(0x333333); // soft white light
 scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 10.0);
 scene.add(directionalLight);
+// Rect Lighting
+const rectWidth = 0.5;
+const rectHeight = 1.0;
+RectAreaLightUniformsLib.Init();
+const rectLight = new THREE.RectAreaLight(0xffffff, 1.0, width, height);
+rectLight.position.set(5, 5, 5);
+rectLight.lookAt(0, 0, 0);
+
+
 
 
 
