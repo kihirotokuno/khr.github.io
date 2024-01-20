@@ -7,7 +7,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 const camera = new THREE.OrthographicCamera(120, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(0, 0, 2);
+camera.position.set(0, 0, 10);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xDAFF00 );
@@ -40,7 +40,7 @@ const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
 const bgGeometry = new THREE.PlaneGeometry(2, 1);
 const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
 const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-bgMesh.position.set(0, 0, -1);
+bgMesh.position.set(0, 0, -3);
 bgMesh.rotation.set(0, 180, 0);
 scene.add(bgMesh);
 
