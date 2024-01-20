@@ -5,9 +5,9 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera(120, width / height, 0.01, 1000 );
+const camera = new THREE.OrthographicCamera(120, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(0, 0, 0.5);
+camera.position.set(0, 0, 2);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xDAFF00 );
