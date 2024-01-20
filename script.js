@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load 3D model
     const loader = new THREE.GLTFLoader();
-    loader.load('path/to/your/model.gltf', (gltf) => {
+    loader.load('Assets/3dmodel/pc.glb', (gltf) => {
         const model = gltf.scene;
         scene.add(model);
 
