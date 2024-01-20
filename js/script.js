@@ -14,25 +14,25 @@ scene.background = new THREE.Color( 0xDAFF00 );
 
 
 // generate cube
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshPhysicalMaterial({
-    roughness: 0.7,
-    transmission: 1,
-    thickness: 1
-});
-const mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
+// const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+// const material = new THREE.MeshPhysicalMaterial({
+//     roughness: 0.0,
+//     transmission: 1,
+//     thickness: 1
+// });
+// const mesh = new THREE.Mesh( geometry, material );
+// scene.add( mesh );
 
 
 // // generate hex
-// const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
-// const material_hex = new THREE.MeshPhysicalMaterial({
-//     roughness: 0,
-//     transmission: 1,
-//     thickness: 0.5, // Add refraction!
-// });
-// const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
-// scene.add(mesh_hex);
+const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
+const material_hex = new THREE.MeshPhysicalMaterial({
+    roughness: 0,
+    transmission: 1,
+    thickness: 0.5, // Add refraction!
+});
+const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
+scene.add(mesh_hex);
 
 
 //add bg pics for reflection
