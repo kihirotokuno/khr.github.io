@@ -83,11 +83,18 @@ scene.add(directionalLight);
 // Rect Lighting
 const rectWidth = 0.2;
 const rectHeight = 1.0;
+
 //RectAreaLightUniformsLib.Init();
 const rectLight = new THREE.RectAreaLight(0xffffff, 0.5, width, height);
 rectLight.position.set(5, 5, 5);
 rectLight.lookAt(0, 0, 0);
 scene.add(rectLight);
+
+// Hem Light
+const upperColor = 0xFFFF40;
+const downColor = 0x4040FF;
+const hemLight = new THREE.HemisphereLight(upperColor, downColor, 1.0);
+scene.add(hemLight);
 
 
 
