@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -25,11 +24,6 @@ document.body.appendChild( renderer.domElement );
 
 // Instantiate a loader
 const loader = new GLTFLoader();
-
-// Optional: Provide a DRACOLoader instance to decode compressed mesh data
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
-loader.setDRACOLoader( dracoLoader );
 
 // Load a glTF resource
 loader.load(
