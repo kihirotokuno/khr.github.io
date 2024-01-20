@@ -7,7 +7,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 const camera = new THREE.OrthographicCamera(5, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(0, 0, 100);
+camera.position.set(0, 0, 10);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xDAFF00 );
@@ -25,7 +25,7 @@ scene.background = new THREE.Color( 0xDAFF00 );
 
 
 // // generate hex
-const geometry_hex = new THREE.IcosahedronGeometry(.1, 0);
+const geometry_hex = new THREE.IcosahedronGeometry(0.1, 0);
 const material_hex = new THREE.MeshPhysicalMaterial({
     roughness: 0,
     transmission: 1,
