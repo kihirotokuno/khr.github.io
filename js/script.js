@@ -5,7 +5,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera(100, width / height, 0.01, 10 );
+const camera = new THREE.PerspectiveCamera(80, width / height, 0.01, 10 );
 camera.position.z = 1;
 
 const scene = new THREE.Scene();
@@ -22,23 +22,23 @@ const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 
-// generate hex
-const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
-const material_hex = new THREE.MeshPhysicalMaterial({
-    roughness: 0,
-    transmission: 1,
-    thickness: 0.5, // Add refraction!
-});
-const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
-scene.add(mesh_hex);
+// // generate hex
+// const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
+// const material_hex = new THREE.MeshPhysicalMaterial({
+//     roughness: 0,
+//     transmission: 1,
+//     thickness: 0.5, // Add refraction!
+// });
+// const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
+// scene.add(mesh_hex);
 
 
 //add bg pics for reflection
 const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
-const bgGeometry = new THREE.PlaneGeometry(100, 50);
+const bgGeometry = new THREE.PlaneGeometry(20, 10);
 const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
 const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-bgMesh.position.set(0, 0, -10);
+bgMesh.position.set(0, 0, 1);
 scene.add(bgMesh);
 
 
