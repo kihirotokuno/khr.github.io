@@ -33,7 +33,7 @@ const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
 scene.add(mesh_hex);
 
 
-add bg pics for reflection
+//add bg pics for reflection
 const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
 const bgGeometry = new THREE.PlaneGeometry(10, 5);
 const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
