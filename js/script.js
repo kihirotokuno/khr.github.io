@@ -18,7 +18,7 @@ const scene = new THREE.Scene();
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( width, height );
-renderer.setAnimationLoop( animation );
+//renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
 
 
