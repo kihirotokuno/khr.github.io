@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kihiro tokuno</title>
-    <style>
-        body { margin: 0; }
-        canvas { display: block; }
-        #container { position: relative; width: 100vw; height: 100vh; }
-    </style>
-</head>
-<body>
-    <div id="container"></div>
-    <script type="module">
-
-        import * as THREE from './js/threejs/three.module.js'
-        import {GLTFLoader} from './js/threejs/GLTFLoader.js'
-
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script type="module" src="/js/script.js"></script>
+	</body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@<version>/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
+            }
+        }
     </script>
-    <script src="./js/script.js"></script>
-</body>
 </html>
