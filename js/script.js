@@ -29,17 +29,17 @@ const material_hex = new THREE.MeshPhysicalMaterial({
     transmission: 1,
     thickness: 0.5, // Add refraction!
 });
-const mesh_hex = new THREE.Mesh(geometry, material)
+const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
 scene.add(mesh_hex);
 
 
-// add bg pics for reflection
-// const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
-// const bgGeometry = new THREE.PlaneGeometry(10, 5);
-// const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
-// const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-// bgMesh.position.set(0, -10, 0);
-// scene.add(bgMesh);
+add bg pics for reflection
+const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
+const bgGeometry = new THREE.PlaneGeometry(10, 5);
+const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+bgMesh.position.set(0, -10, 0);
+scene.add(bgMesh);
 
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -50,7 +50,7 @@ document.body.appendChild( renderer.domElement );
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff); // soft white light
 scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 10.0);
 scene.add(directionalLight);
 
 
