@@ -5,7 +5,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera(20, width / height, 0.01, 8 );
+const camera = new THREE.PerspectiveCamera(100, width / height, 0.01, 10 );
 camera.position.z = 1;
 
 const scene = new THREE.Scene();
@@ -35,10 +35,10 @@ scene.add(mesh_hex);
 
 //add bg pics for reflection
 const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
-const bgGeometry = new THREE.PlaneGeometry(10, 5);
+const bgGeometry = new THREE.PlaneGeometry(100, 50);
 const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
 const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-bgMesh.position.set(0, 0, 1);
+bgMesh.position.set(0, 0, -10);
 scene.add(bgMesh);
 
 
