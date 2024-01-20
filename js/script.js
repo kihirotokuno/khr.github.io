@@ -32,7 +32,7 @@ const material_hex = new THREE.MeshPhysicalMaterial({
     thickness: 0.1 // Add refraction!
 });
 const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
-mesh_hex.position.set = (0, 2, 0);
+mesh_hex.position.set = (2, 0, 0);
 scene.add(mesh_hex);
 
 
