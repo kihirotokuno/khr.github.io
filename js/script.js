@@ -10,7 +10,7 @@ const camera = new THREE.PerspectiveCamera(17, width / height, 0.01, 1000 );
 camera.position.set(0, 0, 1);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0xDAFF00 );
+scene.background = new THREE.Color( 0xFFFFFF );
 
 
 // generate cube
@@ -142,7 +142,7 @@ loader.load(
 	function ( gltf ) {
 
 		scene.add( gltf.scene );
-
+        gltf.position.set(0, 0, 1);
 		gltf.animations; // Array<THREE.AnimationClip>
 		gltf.scene; // THREE.Group
 		gltf.scenes; // Array<THREE.Group>
