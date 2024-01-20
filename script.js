@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     //1/20
     // Scene and renderer setup
+
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
     // if (!renderer.extensions.get('WEBGL')) {
