@@ -5,7 +5,7 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 8 );
+const camera = new THREE.PerspectiveCamera(20, width / height, 0.01, 8 );
 camera.position.z = 1;
 
 const scene = new THREE.Scene();
@@ -23,7 +23,7 @@ scene.add( mesh );
 
 
 // generate hex
-const geometry_hex = new THREE.IcosahedronGeometry(0.1, 0);
+const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
 const material_hex = new THREE.MeshPhysicalMaterial({
     roughness: 0,
     transmission: 1,
