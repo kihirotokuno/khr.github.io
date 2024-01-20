@@ -7,7 +7,8 @@ const width = window.innerWidth, height = window.innerHeight;
 
 const camera = new THREE.OrthographicCamera(1, width / height, 0.01, 1000 );
 //camera.position.z = 1;
-camera.position.set(0, 0, 5);
+camera.position.set(0, 0, -5);
+camera.rotation.set(0, 180, 0);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xDAFF00 );
