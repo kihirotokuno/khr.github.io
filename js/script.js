@@ -6,9 +6,11 @@ const width = window.innerWidth, height = window.innerHeight;
 // init
 
 const camera = new THREE.PerspectiveCamera(120, width / height, 0.01, 1000 );
-camera.position.z = 1;
+//camera.position.z = 1;
+camera.position.set(60, 0, 100);
 
 const scene = new THREE.Scene();
+scene.background = new THREE.Color( 0x404040 );
 
 
 // generate cube
@@ -34,12 +36,12 @@ scene.add( mesh );
 
 
 //add bg pics for reflection
-const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
-const bgGeometry = new THREE.PlaneGeometry(20, 10);
-const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
-const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-bgMesh.position.set(0, 0, 1);
-scene.add(bgMesh);
+// const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
+// const bgGeometry = new THREE.PlaneGeometry(20, 10);
+// const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+// const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+// bgMesh.position.set(0, 0, 1);
+// scene.add(bgMesh);
 
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -48,7 +50,7 @@ renderer.setSize( width, height );
 document.body.appendChild( renderer.domElement );
 
 // Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff); // soft white light
+const ambientLight = new THREE.AmbientLight(0x333333); // soft white light
 scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 10.0);
 scene.add(directionalLight);
