@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -20,12 +21,27 @@ renderer.setSize( width, height );
 renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
 
+
+const loader = new GLTFLoader();
+
+loader.load( './Assets/3dmodel/pc.glb', function ( gltf ) {
+
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
 // animation
 
 function animation( time ) {
 
 	mesh.rotation.x = time / 2000;
 	mesh.rotation.y = time / 1000;
+    gltf.rotation.x = time / 2000;
+	gltf.rotation.y = time / 1000;
 
 	renderer.render( scene, camera );
 
