@@ -22,25 +22,40 @@ renderer.setSize( width, height );
 document.body.appendChild( renderer.domElement );
 
 
+// Instantiate a loader
 const loader = new GLTFLoader();
 
-loader.load( './assets/3dmodel/pc.gltf', function ( gltf ) {
+// Optional: Provide a DRACOLoader instance to decode compressed mesh data
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
+loader.setDRACOLoader( dracoLoader );
 
-	scene.add( gltf.scene );
+// Load a glTF resource
+loader.load(
+	// resource URL
+	'./assets/3dmodel/pc.gltf',
+	// called when the resource is loaded
+	function ( gltf ) {
 
-}, undefined, function ( error ) {
+		scene.add( gltf.scene );
 
-	console.error( error );
+		gltf.animations; // Array<THREE.AnimationClip>
+		gltf.scene; // THREE.Group
+		gltf.scenes; // Array<THREE.Group>
+		gltf.cameras; // Array<THREE.Camera>
+		gltf.asset; // Object
 
-} );
+	},
+	// called while loading is progressing
+	function ( xhr ) {
 
-// animation
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
-// function animation( time ) {
+	},
+	// called when loading has errors
+	function ( error ) {
 
-// 	mesh.rotation.x = time / 2000;
-// 	mesh.rotation.y = time / 1000;
+		console.log( 'An error happened' );
 
-// 	renderer.render( scene, camera );
-
-// }
+	}
+);
