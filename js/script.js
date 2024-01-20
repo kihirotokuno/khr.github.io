@@ -25,15 +25,15 @@ scene.background = new THREE.Color( 0xDAFF00 );
 
 
 // // generate hex
-const geometry_hex = new THREE.IcosahedronGeometry(0.1, 0);
-const material_hex = new THREE.MeshPhysicalMaterial({
-    roughness: 0,
-    transmission: 1,
-    thickness: 0.1 // Add refraction!
-});
-const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
-mesh_hex.position.set = (2, 0, 0);
-scene.add(mesh_hex);
+// const geometry_hex = new THREE.IcosahedronGeometry(0.1, 0);
+// const material_hex = new THREE.MeshPhysicalMaterial({
+//     roughness: 0,
+//     transmission: 1,
+//     thickness: 0.1 // Add refraction!
+// });
+// const mesh_hex = new THREE.Mesh(geometry_hex, material_hex)
+// mesh_hex.position.set = (2, 0, 0);
+// scene.add(mesh_hex);
 
 
 //add bg pics for reflection
