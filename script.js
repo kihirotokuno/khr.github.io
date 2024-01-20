@@ -1,8 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Ensure WebGL support
+    if (!WEBGL.isWebGLAvailable()) {
+        alert('WebGL is not supported in your browser. Please use a WebGL-compatible browser.');
+        return;
+    }
+
     // Scene, camera, and renderer setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
+    camera.position.set(0, 0, 5); // Adjust camera position
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('container').appendChild(renderer.domElement);
 
@@ -13,38 +20,21 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.add(pointLight);
     scene.add(camera);
 
-    // Load 3D model (placeholder model URL)
+    // Load 3D model
     const loader = new THREE.GLTFLoader();
-    loader.load('Assets/3dmodel/pc.glb', (gltf) => {
+    loader.load('path/to/your/model.gltf', (gltf) => {
         const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        model.scale.set(0.5, 0.5, 0.5); // Adjust scale based on model size
         scene.add(model);
-
-        // Click event
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-
-        function onClick(event) {
-            event.preventDefault();
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(scene.children, true);
-            if (intersects.length > 0) {
-                console.log('Model clicked');
-                // Add any specific actions you want to trigger when the model is clicked
-            }
-        }
-        window.addEventListener('click', onClick, false);
 
         // Animation loop
         const animate = () => {
             requestAnimationFrame(animate);
-            // Add any animations or interactions here
+            model.rotation.y += 0.01; // Rotate the model for visibility
             renderer.render(scene, camera);
         };
         animate();
+    }, undefined, (error) => {
+        console.error('An error happened while loading the model:', error);
     });
 
     // Handle window resize
