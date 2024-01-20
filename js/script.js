@@ -5,16 +5,42 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
-const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
+const camera = new THREE.OrthographicCamera( 70, width / height, 0.01, 10 );
 camera.position.z = 1;
 
 const scene = new THREE.Scene();
 
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshNormalMaterial();
 
+// generate cube
+const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+const material = new THREE.MeshPhysicalMaterial({
+    roughness: 0.7,
+    transmission: 1,
+    thickness: 1
+});
 const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
+
+
+// generate hex
+const geometry_hex = new THREE.IcosahedronGeometry(1, 0);
+const material_hex = new THREE.MeshPhysicalMaterial({
+    roughness: 0,
+    transmission: 1,
+    thickness: 0.5, // Add refraction!
+});
+const mesh_hex = new THREE.Mesh(geometry, material)
+scene.add(mesh_hex);
+
+
+// add bg pics for reflection
+const bgTexture = new THREE.TextureLoader().load("assets/spark.jpg");
+const bgGeometry = new THREE.PlaneGeometry(5, 5);
+const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+bgMesh.position.set(0, 0, -1);
+scene.add(bgMesh);
+
 
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( width, height );
@@ -70,3 +96,4 @@ function animate() {
     renderer.render( scene, camera );
 }
 animate();
+
