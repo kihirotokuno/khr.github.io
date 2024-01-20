@@ -21,6 +21,12 @@ renderer.setSize( width, height );
 //renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
 
+// Lighting
+const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+scene.add(directionalLight);
+
 
 // Instantiate a loader
 const loader = new GLTFLoader();
@@ -53,4 +59,6 @@ loader.load(
 		console.log( 'An error happened' );
 
 	}
+
+
 );
