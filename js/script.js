@@ -172,7 +172,7 @@ const material = new THREE.PointsMaterial({
     size: 0.03,
 });
 
-plyLoader.load('./assets/3dmodel/idd_lab.gltf', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
+plyLoader.load('./assets/3dmodel/idd_lab.ply', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 });
