@@ -7,10 +7,12 @@ const width = window.innerWidth, height = window.innerHeight;
 
 // init
 
+// Camera
 const camera = new THREE.PerspectiveCamera(17, width / height, 0.01, 1000 );
 //camera.position.z = 1;
 camera.position.set(0, 0, 1);
 
+// Background
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xFFFFFF );
 
@@ -24,9 +26,6 @@ const material_cube = new THREE.MeshPhysicalMaterial({
 });
 const mesh = new THREE.Mesh( geometry, renderer.domElement);
 scene.add( mesh );
-
-const controls = new OrbitControls(camera, mesh);
-controls.enabled = !options.enableSwoopingCamera;
 
 
 // // generate hex
@@ -63,6 +62,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 //renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
 
+// Orbit
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+
 window.addEventListener('resize', function () {
 
     var width = window.innerWidth;
@@ -75,9 +78,6 @@ window.addEventListener('resize', function () {
     camera.updateProjectionMatrix();
 
 });
-
-
-//controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
 // Lighting
