@@ -177,12 +177,12 @@ loader.load(
 const plyLoader = new PLYLoader();
 const material = new THREE.PointsMaterial({
     vertexColors: true,//頂点の色付けを有効にする
-    size: 0.04,
+    size: 0.02,
 });
 
 plyLoader.load('./assets/3dmodel/idd_lab.ply', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
     const particles = new THREE.Points(geometry, material_pc);
-    particles.rotation.set(0, 90, 90);
+    particles.rotation.set(90, 90, 0);
     particles.scale.set(0.1, 0.1, 0.1);
 
     scene.add(particles);
