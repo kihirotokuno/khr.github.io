@@ -181,7 +181,7 @@ const material = new THREE.PointsMaterial({
 });
 
 plyLoader.load('./assets/3dmodel/idd_lab.ply', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
-    const particles = new THREE.Points(geometry, material_pc);
+    const particles = new THREE.Points(geometry, material);
     particles.rotation.set(0, 0, 0);
     particles.scale.set(0.3, 0.3, 0.3);
 
