@@ -19,10 +19,10 @@ scene.background = new THREE.Color( 0xFFFFFF );
 
 //generate cube
 //const geometry = new THREE.SphereGeometry( 1.0, 1.0, 1.0 );
-const material_pc = new THREE.PointsMaterial({
-    vertexColors: true,//頂点の色付けを有効にする
-    size: 0.2
-});
+// const material_pc = new THREE.PointsMaterial({
+//     vertexColors: true,//頂点の色付けを有効にする
+//     size: 0.2
+// });
 // const material_cube = new THREE.MeshPhysicalMaterial({
 //     roughness: 0.0,
 //     transmission: 1,
@@ -177,12 +177,12 @@ loader.load(
 const plyLoader = new PLYLoader();
 const material = new THREE.PointsMaterial({
     vertexColors: true,//頂点の色付けを有効にする
-    size: 0.02,
+    size: 0.05,
 });
 
 plyLoader.load('./assets/3dmodel/idd_lab.ply', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
     const particles = new THREE.Points(geometry, material_pc);
-    particles.rotation.set(90, 90, 0);
+    particles.rotation.set(0, 0, 0);
     particles.scale.set(0.3, 0.3, 0.3);
 
     scene.add(particles);
