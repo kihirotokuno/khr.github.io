@@ -24,7 +24,7 @@ const material_cube = new THREE.MeshPhysicalMaterial({
     transmission: 1,
     thickness: 1
 });
-const mesh = new THREE.Mesh( geometry, renderer.domElement);
+const mesh = new THREE.Mesh( geometry, material_cube);
 scene.add( mesh );
 
 
