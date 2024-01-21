@@ -166,7 +166,7 @@ loader.load(
 );
 
 
-const plyLoader = new THREE.PLYLoader();
+const plyLoader = new PLYLoader();
 const material = new THREE.PointsMaterial({
     vertexColors: true,//頂点の色付けを有効にする
     size: 0.03,
