@@ -21,10 +21,7 @@ scene.background = new THREE.Color( 0xFFFFFF );
 //const geometry = new THREE.SphereGeometry( 1.0, 1.0, 1.0 );
 const material_pc = new THREE.PointsMaterial({
     vertexColors: true,//頂点の色付けを有効にする
-    roughness: 0.0,
-    transmission: 1,
-    thickness: 1,
-    size: 0.5
+    size: 0.2
 });
 // const material_cube = new THREE.MeshPhysicalMaterial({
 //     roughness: 0.0,
