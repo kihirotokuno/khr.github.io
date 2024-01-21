@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {PLYLoader} from 'three/addons/loaders/PLYLoader.js';
+import {OrbitControls} from 'three/addons//controls/OrbitControls';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -9,6 +10,9 @@ const width = window.innerWidth, height = window.innerHeight;
 const camera = new THREE.PerspectiveCamera(17, width / height, 0.01, 1000 );
 //camera.position.z = 1;
 camera.position.set(0, 0, 1);
+
+const controls = new THREE.OrbitControls(camera, canvas);
+controls.enabled = !options.enableSwoopingCamera;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xFFFFFF );
