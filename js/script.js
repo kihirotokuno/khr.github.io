@@ -11,9 +11,6 @@ const camera = new THREE.PerspectiveCamera(17, width / height, 0.01, 1000 );
 //camera.position.z = 1;
 camera.position.set(0, 0, 1);
 
-const controls = new THREE.OrbitControls(camera, mesh);
-controls.enabled = !options.enableSwoopingCamera;
-
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xFFFFFF );
 
@@ -27,6 +24,9 @@ const material_cube = new THREE.MeshPhysicalMaterial({
 });
 const mesh = new THREE.Mesh( geometry, material_cube );
 scene.add( mesh );
+
+const controls = new THREE.OrbitControls(camera, mesh);
+controls.enabled = !options.enableSwoopingCamera;
 
 
 // // generate hex
