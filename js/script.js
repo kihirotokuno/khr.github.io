@@ -66,7 +66,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 //renderer.setAnimationLoop( animation );
 document.body.appendChild( renderer.domElement );
 
-// Orbit
+// Camera Control
 const controls = new OrbitControls(camera, renderer.domElement);
 
 
@@ -91,7 +91,7 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
 scene.add(directionalLight);
 // Rect Lighting
 const rectWidth = 0.2;
-const rectHeight = 1.0;
+const rectHeight = 0.5;
 
 //RectAreaLightUniformsLib.Init();
 const rectLight = new THREE.RectAreaLight(0xffffff, 0.5, width, height);
