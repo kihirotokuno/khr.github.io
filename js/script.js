@@ -25,7 +25,7 @@ const material_cube = new THREE.MeshPhysicalMaterial({
 const mesh = new THREE.Mesh( geometry, material_cube );
 scene.add( mesh );
 
-const controls = new THREE.OrbitControls(camera, mesh);
+const controls = new OrbitControls(camera, mesh);
 controls.enabled = !options.enableSwoopingCamera;
 
 
