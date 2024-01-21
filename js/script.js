@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import {PLYLoader} from 'three/addons/loaders/PLYLoader.js';
 
 const width = window.innerWidth, height = window.innerHeight;
 
@@ -170,6 +171,7 @@ const material = new THREE.PointsMaterial({
     vertexColors: true,//頂点の色付けを有効にする
     size: 0.03,
 });
+
 plyLoader.load('./assets/3dmodel/idd_lab.gltf', (geometry) => { //引数にはpositionとcolorを持つBufferGeometryが入ってる
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
