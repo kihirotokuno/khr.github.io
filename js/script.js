@@ -18,14 +18,14 @@ scene.background = new THREE.Color( 0xFFFFFF );
 
 
 //generate cube
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material_cube = new THREE.MeshPhysicalMaterial({
-    roughness: 0.0,
-    transmission: 1,
-    thickness: 1
-});
-const mesh = new THREE.Mesh( geometry, material_cube);
-scene.add( mesh );
+const geometry = new THREE.SphereGeometry( 1.0, 1.0, 1.0 );
+// const material_cube = new THREE.MeshPhysicalMaterial({
+//     roughness: 0.0,
+//     transmission: 1,
+//     thickness: 1
+// });
+// const mesh = new THREE.Mesh( geometry, material_cube);
+// scene.add( mesh );
 
 
 // // generate hex
