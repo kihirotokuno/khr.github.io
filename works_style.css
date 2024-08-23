@@ -1,0 +1,160 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  width: 1440px;
+  height: 1883px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.frame .div {
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 70px 20px 20px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-top: -1px;
+  margin-left: -1px;
+  margin-right: -1px;
+  background-color: #ffffff;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #000000;
+  display: flex;
+  position: relative;
+}
+
+.frame .div-2 {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 20px;
+  flex: 1;
+  align-self: stretch;
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+}
+
+.frame .text-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.frame .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.frame .div-wrapper {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 40px 40px;
+  flex: 1;
+  align-self: stretch;
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+}
+
+.frame .div-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: -1px;
+  margin-left: -1px;
+  margin-right: -1px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #000000;
+}
+
+.frame .div-4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 60px 60px;
+  padding: 60px 40px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.frame .div-5 {
+  flex-direction: column;
+  min-width: 360px;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+}
+
+.frame .rectangle {
+  min-width: 360px;
+  object-fit: cover;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 394px;
+}
+
+.frame .text-wrapper-3 {
+  position: relative;
+  width: fit-content;
+  font-family: "SF Pro-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 1.2px;
+  line-height: 36px;
+  white-space: nowrap;
+}
+
+.frame .div-6 {
+  display: flex;
+  flex-direction: column;
+  min-width: 360px;
+  height: 450px;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.frame .img {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 394px;
+}

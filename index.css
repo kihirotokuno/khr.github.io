@@ -1,186 +1,192 @@
-.iphonemini {
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+.tokuno-kihiro {
+  position: relative;
+  letter-spacing: 0.05em;
+  line-height: 150%;
 }
 
-.iphonemini .overlap-group-wrapper {
-    background-color: #ffffff;
-    overflow: hidden;
-    width: 1440px;
-    height: 1024px;
+.tokuno-kihiro-parent {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
-.iphonemini .overlap-group {
-    position: relative;
-    height: 1033px;
+.menu-wrapper {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
-.iphonemini .top {
-    display: flex;
-    flex-direction: column;
-    width: 1440px;
-    height: 1024px;
-    align-items: flex-start;
-    position: absolute;
-    top: 0;
-    left: 0;
+.frame-group {
+  align-self: stretch;
+  background-color: #fff;
+  border-bottom: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 70px 20px 20px;
+  gap: 10px;
 }
 
-.iphonemini .top-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
-    padding: 70px 20px 20px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-    margin-top: -1px;
-    margin-left: -1px;
-    margin-right: -1px;
-    background-color: #ffffff;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-color: #000000;
+.frame-child {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  height: 394px;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-width: 360px;
 }
 
-.iphonemini .header-navigation {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px 20px;
-    position: relative;
-    flex: 1;
-    align-self: stretch;
-    flex-grow: 1;
+.rectangle-parent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  min-width: 360px;
 }
 
-.iphonemini .text-wrapper {
-    position: relative;
-    width: fit-content;
-    margin-top: -1px;
-    font-family: 'Inter-Bold', Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 16px;
-    letter-spacing: 0.8px;
-    line-height: 24px;
-    white-space: nowrap;
+.rectangle-group {
+  flex: 1;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  min-width: 360px;
 }
 
-.iphonemini .div-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 40px 40px;
-    position: relative;
-    flex: 1;
-    align-self: stretch;
-    flex-grow: 1;
+.frame-div {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 40px;
+  gap: 60px;
 }
 
-.iphonemini .div {
-    position: relative;
-    width: fit-content;
-    margin-top: -1px;
-    font-family: 'Inter-Regular', Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 16px;
-    letter-spacing: 0.8px;
-    line-height: 24px;
-    white-space: nowrap;
+.frame-child1 {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  height: 394px;
+  flex-shrink: 0;
 }
 
-.iphonemini .top-showcase {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: relative;
-    flex: 1;
-    align-self: stretch;
-    width: 100%;
-    flex-grow: 1;
-    margin-bottom: -1px;
-    margin-left: -1px;
-    margin-right: -1px;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-color: #000000;
+.frame-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 40px;
 }
 
-.iphonemini .rectangle {
-    position: relative;
-    flex: 1;
-    align-self: stretch;
-    flex-grow: 1;
+.frame-container {
+  align-self: stretch;
+  flex: 1;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 24px;
+  font-family: 'SF Pro';
 }
 
-.iphonemini .top-button-bio {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 13.45px;
-    padding: 142.62px 157.42px;
-    position: absolute;
-    top: 707px;
-    left: 839px;
+.frame-parent {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.iphonemini .polygon {
-    position: absolute;
-    width: 365px;
-    height: 365px;
-    top: 0;
-    left: 0;
+.iphone13mini-375-812 {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 1883px;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 16px;
+  color: #000;
+  font-family: Inter;
 }
 
-.iphonemini .text-wrapper-2 {
-    position: relative;
-    align-self: stretch;
-    margin-top: -1.35px;
-    font-family: 'Inter-Regular', Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 26.9px;
-    text-align: center;
-    letter-spacing: 1.35px;
-    line-height: 40.4px;
+/* Additional styles for the top page */
+.top-showcase {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
 }
 
-.iphonemini .top-button-explore {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 13.45px;
-    padding: 129.16px 84.76px;
-    position: absolute;
-    top: 691px;
-    left: 1123px;
-    background-color: #eaff00;
-    border-radius: 150.02px;
-    border: 1px solid;
-    border-color: #000000;
+.rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.iphonemini .text-wrapper-3 {
-    position: relative;
-    width: fit-content;
-    margin-top: -1px;
-    font-family: 'Inter-Regular', Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 26.9px;
-    letter-spacing: 1.35px;
-    line-height: 40.4px;
-    white-space: nowrap;
+.rectangle.active {
+  opacity: 1;
+}
+
+.menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-item {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: inherit;
 }

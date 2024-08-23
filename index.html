@@ -3,9 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tokuno Kihiro - Portfolio</title>
+        <title>TOKUNO KIHIRO</title>
         <link rel="stylesheet" href="style.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     </head>
     <body>
         <div class="iphonemini">
@@ -13,16 +12,19 @@
                 <div class="top">
                     <header class="top-header">
                         <nav class="header-navigation">
-                            <div class="text-wrapper">TOKUNO KIHIRO</div>
+                            <div class="text-wrapper" id="home-link" style="cursor: pointer">TOKUNO KIHIRO</div>
                             <button class="menu-button">MENU</button>
                         </nav>
                     </header>
-                    <main class="top-showcase">
-                        <img src="img/showacse_1.png" alt="Showcase image 1" class="rectangle active" />
-                        <img src="img/showcase_2.png" alt="Showcase image 2" class="rectangle" />
-                        <img src="img/showacase_3.png" alt="Showcase image 3" class="rectangle" />
-                        <img src="img/showacase_4.png" alt="Showcase image 4" class="rectangle" />
-                        <div id="p5-canvas"></div>
+
+                    <main class="top-showcase" role="main">
+                        <!-- Showcase images for index.html -->
+                        <img src="img/showcase_1.png" class="showcase-image active" alt="Showcase image 1" />
+                        <img src="img/showcase_2.png" class="showcase-image" alt="Showcase image 2" />
+                        <img src="img/showcase_3.png" class="showcase-image" alt="Showcase image 3" />
+                        <img src="img/showcase_4.png" class="showcase-image" alt="Showcase image 4" />
+
+                        <!-- Menu overlay -->
                         <div class="menu-overlay">
                             <div class="menu-content">
                                 <div class="menu-item">TOP</div>
@@ -35,6 +37,5 @@
             </div>
         </div>
         <script src="js/script.js"></script>
-        <script src="js/shapes.js"></script>
     </body>
 </html>

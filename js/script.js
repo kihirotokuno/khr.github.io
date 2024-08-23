@@ -1,50 +1,96 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const images = document.querySelectorAll('.rectangle');
+	const showcaseImages = document.querySelectorAll('.showcase-image');
 	const menuButton = document.querySelector('.menu-button');
 	const menuOverlay = document.querySelector('.menu-overlay');
+	const menuContent = document.querySelector('.menu-content');
 	const menuItems = document.querySelectorAll('.menu-item');
+	const homeLink = document.getElementById('home-link');
 	let currentIndex = 0;
 	let slideInterval;
 
 	function showNextImage() {
-		images[currentIndex].classList.remove('active');
-		currentIndex = (currentIndex + 1) % images.length;
-		images[currentIndex].classList.add('active');
+		showcaseImages[currentIndex].classList.remove('active');
+		currentIndex = (currentIndex + 1) % showcaseImages.length;
+		showcaseImages[currentIndex].classList.add('active');
 	}
 
 	function startSlideshow() {
-		slideInterval = setInterval(showNextImage, 5000); // Change image every 5 seconds
+		stopSlideshow();
+		slideInterval = setInterval(showNextImage, 5000);
 	}
 
 	function stopSlideshow() {
-		clearInterval(slideInterval);
+		if (slideInterval) {
+			clearInterval(slideInterval);
+		}
 	}
 
 	function toggleMenu() {
 		menuOverlay.classList.toggle('active');
 		if (menuOverlay.classList.contains('active')) {
-			// Hide images and stop slideshow when menu is shown
-			images.forEach(img => img.style.opacity = '0');
 			stopSlideshow();
-		} else {
-			// Show images and restart slideshow when menu is closed
-			images[currentIndex].style.opacity = '1';
+		} else if (showcaseImages.length > 0) {
 			startSlideshow();
 		}
 	}
 
-	// Start the slideshow initially
-	startSlideshow();
+	if (showcaseImages.length > 0) {
+		startSlideshow();
+	}
 
-	// Menu functionality
-	menuButton.addEventListener('click', toggleMenu);
+	if (menuButton) {
+		menuButton.addEventListener('click', toggleMenu);
+	}
 
-	menuItems.forEach(item => {
-		item.addEventListener('click', function () {
-			toggleMenu(); // This will close the menu and show images
-			// Add navigation logic here if needed
+	if (homeLink) {
+		homeLink.addEventListener('click', function (event) {
+			event.preventDefault();
+			const currentPage = window.location.pathname.split('/').pop();
+			if (currentPage !== 'index.html') {
+				window.location.href = 'index.html';
+			}
+		});
+	}
+
+	menuItems.forEach((item) => {
+		item.addEventListener('click', function (event) {
+			event.stopPropagation(); // Prevent the click from bubbling up to the overlay
+			const pageName = this.textContent.trim().toLowerCase();
+			if (pageName === 'works' || pageName === 'top') {
+				const currentPage = window.location.pathname.split('/').pop();
+				const targetPage = pageName === 'top' ? 'index.html' : 'works.html';
+
+				if (currentPage !== targetPage) {
+					window.location.href = targetPage;
+				} else {
+					toggleMenu();
+				}
+			} else {
+				toggleMenu();
+			}
 		});
 	});
 
-	document.querySelector('.menu-overlay').style.zIndex = '20';
+	// Close menu when clicking on the overlay (but not on menu items)
+	if (menuOverlay) {
+		menuOverlay.addEventListener('click', function (event) {
+			if (event.target === menuOverlay) {
+				toggleMenu();
+			}
+		});
+	}
+
+	document.addEventListener('keydown', function (event) {
+		if (event.key === 'Escape' && menuOverlay.classList.contains('active')) {
+			toggleMenu();
+		}
+	});
+
+	document.addEventListener('visibilitychange', function () {
+		if (document.hidden) {
+			stopSlideshow();
+		} else if (showcaseImages.length > 0) {
+			startSlideshow();
+		}
+	});
 });
