@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-                }
-            }
-        </script>
-		<script type="module" src="/js/script.js"></script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tokuno Kihiro - Portfolio</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    </head>
+    <body>
+        <div class="iphonemini">
+            <div class="top-wrapper">
+                <div class="top">
+                    <header class="top-header">
+                        <nav class="header-navigation">
+                            <div class="text-wrapper">TOKUNO KIHIRO</div>
+                            <button class="menu-button">MENU</button>
+                        </nav>
+                    </header>
+                    <main class="top-showcase">
+                        <img src="img/showacse_1.png" alt="Showcase image 1" class="rectangle active" />
+                        <img src="img/showcase_2.png" alt="Showcase image 2" class="rectangle" />
+                        <img src="img/showacase_3.png" alt="Showcase image 3" class="rectangle" />
+                        <img src="img/showacase_4.png" alt="Showcase image 4" class="rectangle" />
+                        <div id="p5-canvas"></div>
+                        <div class="menu-overlay">
+                            <div class="menu-content">
+                                <div class="menu-item">TOP</div>
+                                <div class="menu-item">WORKS</div>
+                                <div class="menu-item">BIO</div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="js/script.js"></script>
+        <script src="js/shapes.js"></script>
+    </body>
 </html>
