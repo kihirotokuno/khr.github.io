@@ -124,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			}));
 		}
 
+
+
 		// Hide content initially
 		content.style.visibility = 'hidden';
 		content.style.opacity = '0';
@@ -151,6 +153,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		// Handle window resize
 		window.addEventListener('resize', setCanvasSize);
+
+		function requestOrientationPermission() {
+			if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+				DeviceOrientationEvent.requestPermission()
+					.then(permissionState => {
+						if (permissionState === 'granted') {
+							window.addEventListener('deviceorientation', handleOrientation);
+						}
+					})
+					.catch(console.error);
+			} else {
+				// Handle regular non iOS 13+ devices
+				window.addEventListener('deviceorientation', handleOrientation);
+			}
+		}
+
+		// Add a button to request permissions
+		const permissionButton = document.createElement('button');
+		permissionButton.textContent = 'Enable Gyroscope';
+		permissionButton.style.position = 'fixed';
+		permissionButton.style.bottom = '20px';
+		permissionButton.style.left = '50%';
+		permissionButton.style.transform = 'translateX(-50%)';
+		permissionButton.style.zIndex = '1000';
+		permissionButton.addEventListener('click', requestOrientationPermission);
+		document.body.appendChild(permissionButton);
+
+
+
 	} else {
 		// For pages other than index, make content visible immediately
 		content.style.visibility = 'visible';
@@ -317,3 +348,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 });
+
+function handleOrientation(event) {
+	// This function is now defined in the p5 sketch
+	// We keep it here for compatibility with the permission request
+}

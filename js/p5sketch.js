@@ -4,6 +4,7 @@ new p5(function (p) {
   let isMenuActive = false;
   const shapeSize = 230;
   let walls = [];
+  let gyroX = 0, gyroY = 0;
 
   p.setup = function () {
     const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -70,6 +71,11 @@ new p5(function (p) {
       Bodies.rectangle(p.width + 50, p.height / 2, 100, p.height, wallOptions),
     ];
     World.add(world, walls);
+
+    // Setup gyroscope event listener
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
   };
 
 
@@ -82,6 +88,10 @@ new p5(function (p) {
 
     p.clear(); // Use clear instead of background to make it transparent
     Matter.Engine.update(engine);
+
+    // Apply gyroscope forces
+    Matter.Body.applyForce(topCircle, topCircle.position, { x: gyroX * 0.0001, y: -gyroY * 0.0001 });
+    Matter.Body.applyForce(worksSquare, worksSquare.position, { x: gyroX * 0.0001, y: -gyroY * 0.0001 });
 
     constrainPosition(topCircle);
     constrainPosition(worksSquare);
