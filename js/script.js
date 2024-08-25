@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	const progressBar = document.querySelector('.slideshow-progress-bar');
 	let currentIndex = 0;
 	let slideshowTimer;
-	const slideDuration = 2000; // 5 seconds
+	const slideDuration = 2500; // 5 seconds
 
 	//////Menu UI///////
 	const topHeader = document.querySelector('.top-header');
 	const menuButton = document.querySelector('.menu-button');
 	const menuOverlay = document.querySelector('.menu-overlay');
-	const menuContent = document.querySelector('.menu-content');
 	const menuItems = document.querySelectorAll('.menu-item');
 	const homeLink = document.getElementById('home-link');
 
@@ -43,30 +42,105 @@ document.addEventListener('DOMContentLoaded', function () {
 			showAccelerometerMessage();
 		}
 
-		function showAccelerometerMessage() {
-			const messageElement = document.createElement('div');
-			messageElement.textContent = 'Tilt your device to interact with the menu!';
-			messageElement.style.position = 'fixed';
-			messageElement.style.bottom = '20px';
-			messageElement.style.left = '50%';
-			messageElement.style.transform = 'translateX(-50%)';
-			messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-			messageElement.style.color = 'white';
-			messageElement.style.padding = '10px';
-			messageElement.style.borderRadius = '5px';
-			messageElement.style.zIndex = '1000';
-			document.body.appendChild(messageElement);
-
-			setTimeout(() => {
-				messageElement.style.opacity = '0';
-				messageElement.style.transition = 'opacity 0.5s ease-out';
-				setTimeout(() => messageElement.remove(), 500);
-			}, 3000);
-		}
-
 		if (!hasLoaded) {
 			// Preload images and handle loading screen
-			// ... (your existing preload and loading screen code) ...
+			const loadingScreen = document.getElementById('loading-screen');
+			const canvas = document.getElementById('loading-canvas');
+			const ctx = canvas.getContext('2d');
+
+			// Set canvas size
+			function setCanvasSize() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
+			setCanvasSize();
+
+			// Circle properties
+			const circles = [];
+			const maxCircles = 50;
+			const initialCircles = 15;
+			const initialCircleSize = 20;
+			const maxCircleSize = 300;
+			let circleCount = 0;
+			let startTime = Date.now();
+
+			// Create a circle
+			function createCircle() {
+				return {
+					x: Math.random() * canvas.width,
+					y: Math.random() * canvas.height - canvas.height,
+					initialRadius: Math.random() * initialCircleSize + 50,
+					speed: Math.random() * 10 + 3
+				};
+			}
+
+			// Initialize circles
+			for (let i = 0; i < initialCircles; i++) {
+				circles.push(createCircle());
+				circleCount++;
+			}
+
+			// Animation function
+			function animate() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.fillStyle = 'black';
+
+				const currentTime = Date.now();
+				const elapsedTime = (currentTime - startTime) / 1000; // time in seconds
+
+				// Add new circles over time
+				if (circleCount < maxCircles && Math.random() < 0.1) {
+					circles.push(createCircle());
+					circleCount++;
+				}
+
+				circles.forEach(circle => {
+					// Calculate current radius based on elapsed time
+					const growthFactor = Math.min(elapsedTime / 3, 1); // Max growth after 10 seconds
+					const currentRadius = circle.initialRadius + (maxCircleSize - circle.initialRadius) * growthFactor;
+
+					ctx.beginPath();
+					ctx.arc(circle.x, circle.y, currentRadius, 0, Math.PI * 2);
+					ctx.fill();
+
+					circle.y += circle.speed;
+
+					if (circle.y > canvas.height + currentRadius) {
+						circle.y = -currentRadius;
+						circle.x = Math.random() * canvas.width;
+					}
+				});
+
+				requestAnimationFrame(animate);
+			}
+
+			// Start animation
+			animate();
+
+			// Function to hide loading screen and show content
+			function hideLoadingScreen() {
+				loadingScreen.style.opacity = '0';
+				loadingScreen.style.visibility = 'hidden';
+				content.style.visibility = 'visible';
+				content.style.opacity = '1';
+			}
+
+			// Preload images
+			function preloadImages() {
+				const images = document.querySelectorAll('img');
+				return Promise.all(Array.from(images).map(img => {
+					if (img.complete) return Promise.resolve();
+					return new Promise((resolve, reject) => {
+						img.onload = resolve;
+						img.onerror = reject;
+					});
+				}));
+			}
+
+			// Hide content initially
+			content.style.visibility = 'hidden';
+			content.style.opacity = '0';
+			content.style.transition = 'opacity 0.5s ease-in';
 
 			// Hide loading screen when images are loaded and a minimum time has passed
 			const minimumLoadTime = 3000; // 3 seconds minimum loading time
@@ -210,6 +284,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			window.p5Instance.setMenuActive(isActive);
 		}
 
+		const gyroDisplay = document.getElementById('gyro-display');
+		if (gyroDisplay) {
+			gyroDisplay.style.display = isActive ? 'block' : 'none';
+		}
+
 		document.getElementById('p5-canvas').classList.toggle('menu-active', isActive);
 	}
 
@@ -248,13 +327,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	if (menuOverlay) {
-		menuOverlay.addEventListener('click', function (event) {
-			if (event.target === menuOverlay) {
-				toggleMenu(event);
-			}
-		});
-	}
+	// if (menuOverlay) {
+	// 	menuOverlay.addEventListener('click', function (event) {
+	// 		if (event.target === menuOverlay) {
+	// 			toggleMenu(event);
+	// 		}
+	// 	});
+	// }
 
 	document.addEventListener('keydown', function (event) {
 		if (event.key === 'Escape' && menuOverlay.classList.contains('active')) {
@@ -275,12 +354,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function handleOrientation(event) {
 	if (window.p5Instance && window.p5Instance.setGyroData) {
-		window.p5Instance.setGyroData(event.gamma, event.beta);
+		window.p5Instance.setGyroData(event.alpha, event.beta, event.gamma);
 	}
 
 	// Update gyro display
 	const gyroDisplay = document.getElementById('gyro-display');
 	if (gyroDisplay) {
-		gyroDisplay.textContent = `Gyro X: ${event.gamma.toFixed(2)}\nGyro Y: ${event.beta.toFixed(2)}`;
+		gyroDisplay.textContent = `Gyro X: ${event.alpha.toFixed(2)}\nGyro Y: ${event.beta.toFixed(2)}\nGyro Z: ${event.gamma.toFixed(2)}`;
+		gyroDisplay.style.display = 'block';
 	}
 }

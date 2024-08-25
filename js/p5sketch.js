@@ -4,7 +4,7 @@ new p5(function (p) {
   let isMenuActive = false;
   const shapeSize = 230;
   let walls = [];
-  let gyroX = 0, gyroY = 0;
+  let gyroX = 0, gyroY = 0, gyroZ = 0;
 
   p.setup = function () {
     const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -81,6 +81,7 @@ new p5(function (p) {
   p.setGyroData = function (x, y) {
     gyroX = x;
     gyroY = y;
+    gyroZ = z;
 
     // Update gyro display
     const gyroDisplay = document.getElementById('gyro-display');
@@ -101,8 +102,8 @@ new p5(function (p) {
     Matter.Engine.update(engine);
 
     // Apply gyroscope forces
-    Matter.Body.applyForce(topCircle, topCircle.position, { x: gyroX * 0.1, y: -gyroY * 0.1 });
-    Matter.Body.applyForce(worksSquare, worksSquare.position, { x: gyroX * 0.1, y: -gyroY * 0.1 });
+    Matter.Body.applyForce(topCircle, topCircle.position, { x: gyroX * 0.001, y: gyroY * 0.001 });
+    Matter.Body.applyForce(worksSquare, worksSquare.position, { x: gyroX * 0.001, y: gyroY * 0.001 });
 
     constrainPosition(topCircle);
     constrainPosition(worksSquare);
