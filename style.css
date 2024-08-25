@@ -17,6 +17,7 @@ body {
   max-height: 100vh;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .top-wrapper {
@@ -28,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 
 .top-header {
@@ -67,6 +69,24 @@ body {
   font-weight: 300;
   letter-spacing: 0.8px;
   transition: color 0.3s ease;
+}
+
+#gyro-display {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 8px;
+  font-family: monospace;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
+
+.menu-active #gyro-display {
+  display: block;
 }
 
 .top-header:hover .text-wrapper,

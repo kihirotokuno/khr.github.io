@@ -32,156 +32,80 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (isIndexPage) {
 		const loadingScreen = document.getElementById('loading-screen');
-		const canvas = document.getElementById('loading-canvas');
-		const ctx = canvas.getContext('2d');
+		const hasLoaded = sessionStorage.getItem('hasLoaded');
 
-		// Set canvas size
-		function setCanvasSize() {
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
-		}
-		setCanvasSize();
-
-		// Circle properties
-		const circles = [];
-		const maxCircles = 100;
-		const initialCircles = 50;
-		const initialCircleSize = 20;
-		const maxCircleSize = 230;
-		let circleCount = 0;
-		let startTime = Date.now();
-
-		// Create a circle
-		function createCircle() {
-			return {
-				x: Math.random() * canvas.width,
-				y: Math.random() * canvas.height - canvas.height,
-				initialRadius: Math.random() * initialCircleSize + 10,
-				speed: Math.random() * 10 + 5
-			};
-		}
-
-		// Initialize circles
-		for (let i = 0; i < initialCircles; i++) {
-			circles.push(createCircle());
-			circleCount++;
-		}
-
-		// Animation function
-		function animate() {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.fillStyle = 'black';
-
-			const currentTime = Date.now();
-			const elapsedTime = (currentTime - startTime) / 1000; // time in seconds
-
-			// Add new circles over time
-			if (circleCount < maxCircles && Math.random() < 0.1) {
-				circles.push(createCircle());
-				circleCount++;
-			}
-
-			circles.forEach(circle => {
-				// Calculate current radius based on elapsed time
-				const growthFactor = Math.min(elapsedTime / 3, 1); // Max growth after 10 seconds
-				const currentRadius = circle.initialRadius + (maxCircleSize - circle.initialRadius) * growthFactor;
-
-				ctx.beginPath();
-				ctx.arc(circle.x, circle.y, currentRadius, 0, Math.PI * 2);
-				ctx.fill();
-
-				circle.y += circle.speed;
-
-				if (circle.y > canvas.height + currentRadius) {
-					circle.y = -currentRadius;
-					circle.x = Math.random() * canvas.width;
-				}
-			});
-
-			requestAnimationFrame(animate);
-		}
-
-		// Start animation
-		animate();
-
-		// Function to hide loading screen and show content
 		function hideLoadingScreen() {
 			loadingScreen.style.opacity = '0';
 			loadingScreen.style.visibility = 'hidden';
 			content.style.visibility = 'visible';
 			content.style.opacity = '1';
+			sessionStorage.setItem('hasLoaded', 'true');
+			showAccelerometerMessage();
 		}
 
-		// Preload images
-		function preloadImages() {
-			const images = document.querySelectorAll('img');
-			return Promise.all(Array.from(images).map(img => {
-				if (img.complete) return Promise.resolve();
-				return new Promise((resolve, reject) => {
-					img.onload = resolve;
-					img.onerror = reject;
-				});
-			}));
+		function showAccelerometerMessage() {
+			const messageElement = document.createElement('div');
+			messageElement.textContent = 'Tilt your device to interact with the menu!';
+			messageElement.style.position = 'fixed';
+			messageElement.style.bottom = '20px';
+			messageElement.style.left = '50%';
+			messageElement.style.transform = 'translateX(-50%)';
+			messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+			messageElement.style.color = 'white';
+			messageElement.style.padding = '10px';
+			messageElement.style.borderRadius = '5px';
+			messageElement.style.zIndex = '1000';
+			document.body.appendChild(messageElement);
+
+			setTimeout(() => {
+				messageElement.style.opacity = '0';
+				messageElement.style.transition = 'opacity 0.5s ease-out';
+				setTimeout(() => messageElement.remove(), 500);
+			}, 3000);
 		}
 
+		if (!hasLoaded) {
+			// Preload images and handle loading screen
+			// ... (your existing preload and loading screen code) ...
 
+			// Hide loading screen when images are loaded and a minimum time has passed
+			const minimumLoadTime = 3000; // 3 seconds minimum loading time
+			const loadStartTime = Date.now();
 
-		// Hide content initially
-		content.style.visibility = 'hidden';
-		content.style.opacity = '0';
-		content.style.transition = 'opacity 0.5s ease-in';
-
-		// Hide loading screen when images are loaded and a minimum time has passed
-		const minimumLoadTime = 3000; // 3 seconds minimum loading time
-		const loadStartTime = Date.now();
-
-		Promise.all([
-			preloadImages(),
-			new Promise(resolve => setTimeout(resolve, minimumLoadTime))
-		]).then(() => {
-			const loadEndTime = Date.now();
-			const loadDuration = loadEndTime - loadStartTime;
-			if (loadDuration < minimumLoadTime) {
-				setTimeout(hideLoadingScreen, minimumLoadTime - loadDuration);
-			} else {
-				hideLoadingScreen();
-			}
-		}).catch(error => {
-			console.error('Error loading images:', error);
-			hideLoadingScreen(); // Hide loading screen even if there's an error
-		});
-
-		// Handle window resize
-		window.addEventListener('resize', setCanvasSize);
-
-		function requestOrientationPermission() {
-			if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-				DeviceOrientationEvent.requestPermission()
-					.then(permissionState => {
-						if (permissionState === 'granted') {
-							window.addEventListener('deviceorientation', handleOrientation);
-						}
-					})
-					.catch(console.error);
-			} else {
-				// Handle regular non iOS 13+ devices
-				window.addEventListener('deviceorientation', handleOrientation);
-			}
+			Promise.all([
+				preloadImages(),
+				new Promise(resolve => setTimeout(resolve, minimumLoadTime))
+			]).then(() => {
+				const loadEndTime = Date.now();
+				const loadDuration = loadEndTime - loadStartTime;
+				if (loadDuration < minimumLoadTime) {
+					setTimeout(hideLoadingScreen, minimumLoadTime - loadDuration);
+				} else {
+					hideLoadingScreen();
+				}
+			}).catch(error => {
+				console.error('Error loading images:', error);
+				hideLoadingScreen(); // Hide loading screen even if there's an error
+			});
+		} else {
+			// If already loaded once, hide loading screen immediately
+			loadingScreen.style.display = 'none';
+			content.style.visibility = 'visible';
+			content.style.opacity = '1';
 		}
 
-		// Add a button to request permissions
-		const permissionButton = document.createElement('button');
-		permissionButton.textContent = 'Enable Gyroscope';
-		permissionButton.style.position = 'fixed';
-		permissionButton.style.bottom = '20px';
-		permissionButton.style.left = '50%';
-		permissionButton.style.transform = 'translateX(-50%)';
-		permissionButton.style.zIndex = '1000';
-		permissionButton.addEventListener('click', requestOrientationPermission);
-		document.body.appendChild(permissionButton);
-
-
-
+		// Request device orientation permissions
+		if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			DeviceOrientationEvent.requestPermission()
+				.then(permissionState => {
+					if (permissionState === 'granted') {
+						window.addEventListener('deviceorientation', handleOrientation);
+					}
+				})
+				.catch(console.error);
+		} else {
+			window.addEventListener('deviceorientation', handleOrientation);
+		}
 	} else {
 		// For pages other than index, make content visible immediately
 		content.style.visibility = 'visible';
@@ -350,6 +274,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function handleOrientation(event) {
-	// This function is now defined in the p5 sketch
-	// We keep it here for compatibility with the permission request
+	if (window.p5Instance && window.p5Instance.setGyroData) {
+		window.p5Instance.setGyroData(event.gamma, event.beta);
+	}
+
+	// Update gyro display
+	const gyroDisplay = document.getElementById('gyro-display');
+	if (gyroDisplay) {
+		gyroDisplay.textContent = `Gyro X: ${event.gamma.toFixed(2)}\nGyro Y: ${event.beta.toFixed(2)}`;
+	}
 }

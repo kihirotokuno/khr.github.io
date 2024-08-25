@@ -78,6 +78,17 @@ new p5(function (p) {
     }
   };
 
+  p.setGyroData = function (x, y) {
+    gyroX = x;
+    gyroY = y;
+
+    // Update gyro display
+    const gyroDisplay = document.getElementById('gyro-display');
+    if (gyroDisplay) {
+      gyroDisplay.textContent = `Gyro X: ${x.toFixed(2)}\nGyro Y: ${y.toFixed(2)}`;
+    }
+  };
+
 
 
   p.draw = function () {
@@ -90,8 +101,8 @@ new p5(function (p) {
     Matter.Engine.update(engine);
 
     // Apply gyroscope forces
-    Matter.Body.applyForce(topCircle, topCircle.position, { x: gyroX * 0.0001, y: -gyroY * 0.0001 });
-    Matter.Body.applyForce(worksSquare, worksSquare.position, { x: gyroX * 0.0001, y: -gyroY * 0.0001 });
+    Matter.Body.applyForce(topCircle, topCircle.position, { x: gyroX * 0.1, y: -gyroY * 0.1 });
+    Matter.Body.applyForce(worksSquare, worksSquare.position, { x: gyroX * 0.1, y: -gyroY * 0.1 });
 
     constrainPosition(topCircle);
     constrainPosition(worksSquare);
@@ -120,6 +131,7 @@ new p5(function (p) {
     p.textSize(16);
     p.text('WORKS', 0, 0);
     p.pop();
+
   };
 
   p.windowResized = function () {
