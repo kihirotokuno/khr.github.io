@@ -31,15 +31,15 @@ body {
 }
 
 .top-header {
+  background-color: #000000;
   padding: 20px;
-  border-bottom: 1px solid #000000;
   transition: background-color 0.3s ease;
   position: relative;
   z-index: 30;
 }
 
 .top-header:hover {
-  background-color: #000000;
+  background-color: #FFFFFF;
 }
 
 .header-navigation {
@@ -49,6 +49,7 @@ body {
 }
 
 .text-wrapper {
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.8px;
@@ -57,6 +58,7 @@ body {
 }
 
 .menu-button {
+  color: #FFFFFF;
   background: none;
   border: none;
   cursor: pointer;
@@ -69,20 +71,20 @@ body {
 
 .top-header:hover .text-wrapper,
 .top-header:hover .menu-button {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 .top-header.menu-active {
-  background-color: #FFFFFF;
+  background-color: #000000;
 }
 
 .top-header.menu-active .text-wrapper,
 .top-header.menu-active .menu-button {
-  color: #000000;
+  color: #ffffff;
 }
 
 .top-header.home-hover {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .top-header.home-hover .text-wrapper,
@@ -112,6 +114,28 @@ body {
 .showcase-image.active {
   opacity: 1;
 }
+
+.slideshow-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
+}
+
+.slideshow-progress-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: #ffffff;
+  transition: width 0.1s linear;
+}
+
+
+
 
 .menu-overlay {
   position: fixed;
@@ -282,4 +306,40 @@ body {
     font-size: 14px;
     line-height: 27px;
   }
+}
+
+
+#loading-screen {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#loading-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-text {
+  position: relative;
+  z-index: 10000;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
