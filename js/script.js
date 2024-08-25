@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 	const showcaseImages = document.querySelectorAll('.showcase-image');
+	const topHeader = document.querySelector('.top-header');
 	const menuButton = document.querySelector('.menu-button');
 	const menuOverlay = document.querySelector('.menu-overlay');
 	const menuContent = document.querySelector('.menu-content');
@@ -25,36 +26,55 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	function toggleMenu() {
-		menuOverlay.classList.toggle('active');
-		if (menuOverlay.classList.contains('active')) {
-			stopSlideshow();
-		} else if (showcaseImages.length > 0) {
-			startSlideshow();
+	function toggleMenu(event) {
+		if (event.target.tagName.toLowerCase() === 'a') {
+			event.preventDefault();
 		}
+
+		menuOverlay.classList.toggle('active');
+		topHeader.classList.toggle('menu-active');
+		const isActive = menuOverlay.classList.contains('active');
+
+		if (isActive) {
+			menuButton.textContent = 'CLOSE';
+			stopSlideshow();
+		} else {
+			menuButton.textContent = 'MENU';
+			if (showcaseImages.length > 0) {
+				startSlideshow();
+			}
+		}
+
+		if (window.p5Instance && window.p5Instance.setMenuActive) {
+			window.p5Instance.setMenuActive(isActive);
+		}
+
+		document.getElementById('p5-canvas').classList.toggle('menu-active', isActive);
 	}
 
 	if (showcaseImages.length > 0) {
 		startSlideshow();
 	}
 
-	if (menuButton) {
-		menuButton.addEventListener('click', toggleMenu);
-	}
+	topHeader.addEventListener('click', toggleMenu);
 
 	if (homeLink) {
 		homeLink.addEventListener('click', function (event) {
-			event.preventDefault();
+			event.stopPropagation();
 			const currentPage = window.location.pathname.split('/').pop();
 			if (currentPage !== 'index.html') {
 				window.location.href = 'index.html';
 			}
 		});
+
+		homeLink.addEventListener('mouseenter', function () {
+			topHeader.classList.add('home-hover');
+		});
 	}
 
 	menuItems.forEach((item) => {
 		item.addEventListener('click', function (event) {
-			event.stopPropagation(); // Prevent the click from bubbling up to the overlay
+			event.stopPropagation();
 			const pageName = this.textContent.trim().toLowerCase();
 			if (pageName === 'works' || pageName === 'top') {
 				const currentPage = window.location.pathname.split('/').pop();
@@ -63,26 +83,25 @@ document.addEventListener('DOMContentLoaded', function () {
 				if (currentPage !== targetPage) {
 					window.location.href = targetPage;
 				} else {
-					toggleMenu();
+					toggleMenu(event);
 				}
 			} else {
-				toggleMenu();
+				toggleMenu(event);
 			}
 		});
 	});
 
-	// Close menu when clicking on the overlay (but not on menu items)
 	if (menuOverlay) {
 		menuOverlay.addEventListener('click', function (event) {
 			if (event.target === menuOverlay) {
-				toggleMenu();
+				toggleMenu(event);
 			}
 		});
 	}
 
 	document.addEventListener('keydown', function (event) {
 		if (event.key === 'Escape' && menuOverlay.classList.contains('active')) {
-			toggleMenu();
+			toggleMenu(event);
 		}
 	});
 
