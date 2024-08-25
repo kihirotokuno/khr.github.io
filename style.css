@@ -46,7 +46,7 @@ body {
 }
 
 .top-header:hover {
-  background-color: #FFFFFF;
+  background-color: #000000;
 }
 
 .header-navigation {
@@ -78,7 +78,7 @@ body {
 
 .top-header:hover .text-wrapper,
 .top-header:hover .menu-button {
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .top-header.menu-active {
@@ -91,14 +91,45 @@ body {
 }
 
 .top-header.home-hover {
-  background-color: #ffffff;
+  background-color: #000000;
 }
 
 .top-header.home-hover .text-wrapper,
 .top-header.home-hover .menu-button {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
+
+/*/////main left////*/
+.left-container {
+  width: 300px;
+  /* Initial width */
+  min-width: 100px;
+  /* Minimum width */
+  max-width: 50%;
+  /* Maximum width */
+  height: 100%;
+  border-right: 1px solid #000000;
+  position: relative;
+}
+
+/*/////main handle////*/
+.resize-handle {
+  position: absolute;
+  left: 300px;
+  /* Initial position, same as left-container width */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #000000;
+  border-radius: 50%;
+  cursor: ew-resize;
+  z-index: 100;
+}
+
+/*/////main right////*/
 .top-showcase,
 .works-showcase {
   flex: 1;
@@ -193,10 +224,11 @@ body {
 }
 
 .menu-item:hover {
-  opacity: 0.8;
+  color: #42ff00;
 }
 
 .works-showcase {
+  flex-direction: column;
   flex: 1;
   overflow-y: auto;
 }
@@ -347,9 +379,103 @@ body {
   text-align: center;
   z-index: 10000;
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter';
   font-size: 12px;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
   color: #ffffff;
   border-radius: 5px;
+}
+
+/* Add these styles to your existing CSS file or replace the relevant sections */
+
+
+.about {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.top-about {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.top-showcase_about {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding-top: 40px;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.frame-about-1 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  min-width: 280px;
+}
+
+.frame-about-2 {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.text-about {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  min-width: 280px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+.text-about-intro {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+  letter-spacing: 1px;
+}
+
+#3dAvatar {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .top-showcase_about {
+    padding-top: 40px;
+  }
+
+  .frame-about-1 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .frame-about-2 {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  #3dAvatar {
+    width: 100%;
+    height: 600px;
+  }
 }

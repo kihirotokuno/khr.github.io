@@ -182,13 +182,45 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	} else {
 		// For pages other than index, make content visible immediately
-		content.style.visibility = 'visible';
-		content.style.opacity = '1';
+		if (content) {
+			content.style.visibility = 'visible';
+			content.style.opacity = '1';
+		}
 	}
 
 
 
 	//////Main page///////
+
+	// const leftContainer = document.querySelector('.left-container');
+	// const resizeHandle = document.querySelector('.resize-handle');
+	// const topWrapper = document.querySelector('.top-wrapper');
+	// let isResizing = false;
+
+	// resizeHandle.addEventListener('mousedown', startResize);
+	// document.addEventListener('mousemove', resize);
+	// document.addEventListener('mouseup', stopResize);
+
+	// function startResize(e) {
+	// 	isResizing = true;
+	// 	e.preventDefault();
+	// }
+
+	// function resize(e) {
+	// 	if (!isResizing) return;
+
+	// 	const newWidth = e.clientX;
+	// 	const maxWidth = topWrapper.offsetWidth * 0.5;
+
+	// 	if (newWidth > 100 && newWidth < maxWidth) {
+	// 		leftContainer.style.width = newWidth + 'px';
+	// 		resizeHandle.style.left = newWidth + 'px';
+	// 	}
+	// }
+
+	// function stopResize() {
+	// 	isResizing = false;
+	// }
 
 	function showNextImage() {
 		showcaseImages[currentIndex].classList.remove('active');
@@ -307,15 +339,25 @@ document.addEventListener('DOMContentLoaded', function () {
 		item.addEventListener('click', function (event) {
 			event.stopPropagation();
 			const pageName = this.textContent.trim().toLowerCase();
-			if (pageName === 'works' || pageName === 'top') {
-				const currentPage = window.location.pathname.split('/').pop();
-				const targetPage = pageName === 'top' ? 'index.html' : 'works.html';
+			const currentPage = window.location.pathname.split('/').pop();
+			let targetPage;
 
-				if (currentPage !== targetPage) {
-					window.location.href = targetPage;
-				} else {
-					toggleMenu(event);
-				}
+			switch (pageName) {
+				case 'top':
+					targetPage = 'index.html';
+					break;
+				case 'works':
+					targetPage = 'works.html';
+					break;
+				case 'about':
+					targetPage = 'about.html';
+					break;
+				default:
+					targetPage = currentPage;
+			}
+
+			if (currentPage !== targetPage) {
+				window.location.href = targetPage;
 			} else {
 				toggleMenu(event);
 			}
