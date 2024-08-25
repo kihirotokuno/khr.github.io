@@ -27,9 +27,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 
+	function setViewportHeight() {
+		// ビューポートの高さを取得
+		let vh = window.innerHeight * 0.01;
+		// CSSカスタムプロパティとして設定
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}
+
+	setViewportHeight();
+	window.addEventListener('resize', setViewportHeight);
+
+
+
 	//////loading page///////
 
 	if (isIndexPage) {
+
 		const loadingScreen = document.getElementById('loading-screen');
 		const hasLoaded = sessionStorage.getItem('hasLoaded');
 
@@ -39,12 +52,18 @@ document.addEventListener('DOMContentLoaded', function () {
 			content.style.visibility = 'visible';
 			content.style.opacity = '1';
 			sessionStorage.setItem('hasLoaded', 'true');
-			showAccelerometerMessage();
 		}
 
-		if (!hasLoaded) {
+		console.log(hasLoaded);
+
+		if (hasLoaded !== 'true') {
+			console.log("Showing loading screen");
+
+			loadingScreen.style.display = 'block';
+			loadingScreen.style.opacity = '1';
+			loadingScreen.style.visibility = 'visible';
+
 			// Preload images and handle loading screen
-			const loadingScreen = document.getElementById('loading-screen');
 			const canvas = document.getElementById('loading-canvas');
 			const ctx = canvas.getContext('2d');
 
@@ -57,9 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			// Circle properties
 			const circles = [];
-			const maxCircles = 50;
-			const initialCircles = 15;
-			const initialCircleSize = 20;
+			const maxCircles = 40;
+			const initialCircles = 5;
+			const initialCircleSize = 5;
 			const maxCircleSize = 300;
 			let circleCount = 0;
 			let startTime = Date.now();
@@ -69,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				return {
 					x: Math.random() * canvas.width,
 					y: Math.random() * canvas.height - canvas.height,
-					initialRadius: Math.random() * initialCircleSize + 50,
-					speed: Math.random() * 10 + 3
+					initialRadius: Math.random() * initialCircleSize,
+					speed: Math.random() * 20 + 3
 				};
 			}
 
@@ -117,13 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			// Start animation
 			animate();
 
-			// Function to hide loading screen and show content
-			function hideLoadingScreen() {
-				loadingScreen.style.opacity = '0';
-				loadingScreen.style.visibility = 'hidden';
-				content.style.visibility = 'visible';
-				content.style.opacity = '1';
-			}
+
 
 			// Preload images
 			function preloadImages() {
@@ -166,19 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			loadingScreen.style.display = 'none';
 			content.style.visibility = 'visible';
 			content.style.opacity = '1';
-		}
-
-		// Request device orientation permissions
-		if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-			DeviceOrientationEvent.requestPermission()
-				.then(permissionState => {
-					if (permissionState === 'granted') {
-						window.addEventListener('deviceorientation', handleOrientation);
-					}
-				})
-				.catch(console.error);
-		} else {
-			window.addEventListener('deviceorientation', handleOrientation);
 		}
 	} else {
 		// For pages other than index, make content visible immediately
@@ -284,11 +284,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			window.p5Instance.setMenuActive(isActive);
 		}
 
-		const gyroDisplay = document.getElementById('gyro-display');
-		if (gyroDisplay) {
-			gyroDisplay.style.display = isActive ? 'block' : 'none';
-		}
-
 		document.getElementById('p5-canvas').classList.toggle('menu-active', isActive);
 	}
 
@@ -351,16 +346,3 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 });
-
-function handleOrientation(event) {
-	if (window.p5Instance && window.p5Instance.setGyroData) {
-		window.p5Instance.setGyroData(event.alpha, event.beta, event.gamma);
-	}
-
-	// Update gyro display
-	const gyroDisplay = document.getElementById('gyro-display');
-	if (gyroDisplay) {
-		gyroDisplay.textContent = `Gyro X: ${event.alpha.toFixed(2)}\nGyro Y: ${event.beta.toFixed(2)}\nGyro Z: ${event.gamma.toFixed(2)}`;
-		gyroDisplay.style.display = 'block';
-	}
-}

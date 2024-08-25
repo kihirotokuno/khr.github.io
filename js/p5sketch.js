@@ -2,7 +2,7 @@ new p5(function (p) {
   let engine, world;
   let topCircle, worksSquare;
   let isMenuActive = false;
-  const shapeSize = 230;
+  const shapeSize = 200;
   let walls = [];
   let gyroX = 0, gyroY = 0, gyroZ = 0;
 
@@ -62,6 +62,32 @@ new p5(function (p) {
       }
     };
 
+    p.mousePressed = function () {
+      if (!isMenuActive) return;
+
+      // Apply random force to both shapes
+      applyRandomForce(topCircle);
+      applyRandomForce(worksSquare);
+
+      // Check if a shape is clicked
+      const mouseVector = Matter.Vector.create(p.mouseX, p.mouseY);
+      const bodies = Matter.Composite.allBodies(world);
+      const clickedBody = Matter.Query.point(bodies, mouseVector)[0];
+
+      if (clickedBody) {
+        if (clickedBody.label === 'TOP') {
+          window.location.href = 'index.html';
+        } else if (clickedBody.label === 'WORKS') {
+          window.location.href = 'works.html';
+        }
+      }
+    };
+
+    function applyRandomForce(body) {
+      const force = p.createVector(p.random(-0.7, 0.7), p.random(-0.7, -0.7));
+      Matter.Body.applyForce(body, body.position, force);
+    }
+
     World.add(world, [topCircle, worksSquare]);
 
     const wallOptions = { isStatic: true, restitution: 0.3 };
@@ -116,7 +142,7 @@ new p5(function (p) {
     p.ellipse(0, 0, shapeSize);
     p.fill(255);
     p.textAlign(p.CENTER, p.CENTER);
-    p.textSize(16);
+    p.textSize(14);
     p.text('TOP', 0, 0);
     p.pop();
 
@@ -129,7 +155,7 @@ new p5(function (p) {
     p.rect(0, 0, shapeSize, shapeSize);
     p.fill(255);
     p.textAlign(p.CENTER, p.CENTER);
-    p.textSize(16);
+    p.textSize(14);
     p.text('WORKS', 0, 0);
     p.pop();
 
