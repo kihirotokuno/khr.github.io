@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	setViewportHeight();
 	window.addEventListener('resize', setViewportHeight);
 
-
+	console.log(isIndexPage);
 
 	//////loading page///////
 
@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		const loadingScreen = document.getElementById('loading-screen');
 		const hasLoaded = sessionStorage.getItem('hasLoaded');
+
+
 
 		function hideLoadingScreen() {
 			loadingScreen.style.opacity = '0';

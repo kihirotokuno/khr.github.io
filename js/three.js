@@ -1,28 +1,64 @@
-// three.js
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-let scene, camera, renderer, model;
+let scene, camera, renderer, originalModel, pointCloud, controls;
 let currentCameraIndex = 0;
+let isPointCloud = false;
+
+
+
+
+
 const cameraPositions = [
-  new THREE.Vector3(0, 20, 0),    // Top view, far
-  new THREE.Vector3(0, 0, 10),    // Straight-on front view, normal distance
-  new THREE.Vector3(7, 7, 7),     // Diagonal from above, normal distance
-  new THREE.Vector3(-7, 7, 7),    // Diagonal from above, other side, normal distance
-  new THREE.Vector3(4, -4, 4)     // Diagonal from below, close
+  new THREE.Vector3(0, 20, 0),
+  new THREE.Vector3(0, 0, 10),
+  new THREE.Vector3(7, 7, 7),
+  new THREE.Vector3(-7, 7, 7),
+  new THREE.Vector3(4, -4, 4)
 ];
 
+const ASPECT_RATIO = 16 / 14;
+
 function init() {
-  // Create scene
+  const container = document.getElementById('3dAvatar');
+  if (!container) {
+    console.error('3dAvatar container not found');
+    return;
+  }
+
+  const pointCloudMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      circleRadius: { value: 0.05 } // Adjust the circle radius as needed
+    },
+    vertexShader: `
+      uniform float circleRadius;
+
+      attribute vec3 position;
+
+      void main() {
+        vec3 transformedPosition = position;
+        gl_PointSize = circleRadius;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformedPosition, 1.0);
+      }
+    `,
+    fragmentShader: `
+      void main() {
+        gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0); // Black circles
+      }
+    }
+  });
+
+
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);  // White background
+  scene.background = new THREE.Color(0xffffff);  // Keep white background
 
-  // Create renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.gammaFactor = 2.2;
-  document.getElementById('3dAvatar').appendChild(renderer.domElement);
+  updateRendererSize();
+  container.appendChild(renderer.domElement);
 
-  // Add lights
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
@@ -30,82 +66,115 @@ function init() {
   directionalLight.position.set(1, 1, 1);
   scene.add(directionalLight);
 
-  // Load 3D model
-  const loader = new THREE.GLTFLoader();
+  updateCamera();
+
+  controls = new OrbitControls(camera, renderer.domElement);
+
+  const loader = new GLTFLoader();
   loader.load(
     'js/threejs/metaMe.glb',
     function (gltf) {
-      model = gltf.scene;
-      scene.add(model);
+      originalModel = gltf.scene;
+      setupModel(originalModel);
+      createPointCloud(originalModel);
 
-      // Compute the bounding box of the model
-      const box = new THREE.Box3().setFromObject(model);
-      const size = box.getSize(new THREE.Vector3());
-      const center = box.getCenter(new THREE.Vector3());
+      // Start model/point cloud switching
+      setInterval(toggleModelType, 1000); // Switch every 5 seconds
 
-      // Calculate the largest dimension of the model
-      const maxDim = Math.max(size.x, size.y, size.z);
+      // Start camera switching
+      setInterval(switchCameraPosition, 2000); // Switch every 3 seconds
 
-      // Scale the model to fit within a 10 unit cube
-      const scale = 10 / maxDim;
-      model.scale.setScalar(scale);
-
-      // Center the model
-      model.position.sub(center.multiplyScalar(scale));
-
-      // Create orthographic camera after model is loaded
-      const aspect = window.innerWidth / window.innerHeight;
-      const frustumSize = 15;
-      camera = new THREE.OrthographicCamera(
-        frustumSize * aspect / -2,
-        frustumSize * aspect / 2,
-        frustumSize / 2,
-        frustumSize / -2,
-        0.1,
-        1000
-      );
-      updateCameraPosition();
-
-      // Traverse the model to ensure materials are set up correctly
-      model.traverse((child) => {
-        if (child.isMesh) {
-          if (child.material.map) child.material.map.encoding = THREE.sRGBEncoding;
-          child.material.needsUpdate = true;
-        }
-      });
-
-      // Start camera position switching
-      setInterval(switchCameraPosition, 1000);
+      // Start animation loop
+      animate();
     },
     undefined,
     function (error) {
       console.error('An error happened', error);
     }
   );
+}
 
-  // Start animation loop
-  animate();
+function setupModel(model) {
+  const box = new THREE.Box3().setFromObject(model);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const scale = 15 / maxDim;
+  model.scale.setScalar(scale);
+
+  model.position.sub(center.multiplyScalar(scale));
+  model.position.y -= 3;  // Lower the position
+
+  scene.add(model);
+}
+
+function createPointCloud(model) {
+  let geometry = new THREE.BufferGeometry();
+  let positions = [];
+
+  model.traverse((child) => {
+    if (child.isMesh) {
+      const geom = child.geometry;
+      const pos = geom.attributes.position;
+
+      for (let i = 0; i < pos.count; i++) {
+        positions.push(pos.getX(i), pos.getY(i), pos.getZ(i));
+      }
+    }
+  });
+
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+  const material = new THREE.PointsMaterial({
+    color: 0x000000,  // Black points
+    size: 1.0,
+    sizeAttenuation: true
+  });
+
+  pointCloud = new THREE.Points(geometry, material);
+
+  // Apply the same transformation as the original model
+  pointCloud.scale.copy(originalModel.scale);
+  pointCloud.position.copy(originalModel.position);
+  pointCloud.rotation.copy(originalModel.rotation);
+
+  scene.add(pointCloud);
+  pointCloud.visible = false;  // Initially hide the point cloud
+}
+
+function toggleModelType() {
+  isPointCloud = !isPointCloud;
+  originalModel.visible = !isPointCloud;
+  pointCloud.visible = isPointCloud;
+}
+
+function updateRendererSize() {
+  const width = window.innerWidth;
+  const height = width / ASPECT_RATIO;
+  renderer.setSize(width, height);
+}
+
+function updateCamera() {
+  const width = window.innerWidth;
+  const height = width / ASPECT_RATIO;
+  const aspect = width / height;
+  const frustumSize = 15;
+
+  camera = new THREE.OrthographicCamera(
+    frustumSize * aspect / -2,
+    frustumSize * aspect / 2,
+    frustumSize / 2,
+    frustumSize / -2,
+    0.1,
+    1000
+  );
+  updateCameraPosition();
 }
 
 function updateCameraPosition() {
   camera.position.copy(cameraPositions[currentCameraIndex]);
   camera.lookAt(scene.position);
-
-  // Adjust the frustum size based on the camera distance
-  const distance = camera.position.length();
-  let frustumSize = 15;  // Default size
-
-  if (distance > 15) {
-    frustumSize = distance * 1.2;  // Increase frustum size for far views
-  } else if (distance < 7) {
-    frustumSize = 10;  // Decrease frustum size for close views
-  }
-
-  const aspect = window.innerWidth / window.innerHeight;
-  camera.left = frustumSize * aspect / -2;
-  camera.right = frustumSize * aspect / 2;
-  camera.top = frustumSize / 2;
-  camera.bottom = frustumSize / -2;
   camera.updateProjectionMatrix();
 }
 
@@ -117,24 +186,24 @@ function switchCameraPosition() {
 function animate() {
   requestAnimationFrame(animate);
 
-  if (model) {
-    model.rotation.y += 0.005;
+  if (originalModel) {
+    originalModel.rotation.y += 0.01;
+    originalModel.rotation.z += 0.001;
+  }
+  if (pointCloud) {
+    pointCloud.rotation.y += 0.02;
+    originalModel.rotation.z += 0.01;
   }
 
-  if (renderer && scene && camera) {
-    renderer.render(scene, camera);
-  }
+  controls.update();
+  renderer.render(scene, camera);
 }
 
 function onWindowResize() {
-  if (camera && renderer) {
-    updateCameraPosition();  // This will handle frustum size adjustment
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
+  updateRendererSize();
+  updateCamera();
+  controls.update();
 }
 
-// Event listeners
+window.addEventListener('DOMContentLoaded', init);
 window.addEventListener('resize', onWindowResize, false);
-
-// Initialize the 3D scene
-init();
