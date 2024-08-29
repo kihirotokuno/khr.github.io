@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter-Regular", sans-serif;
+}
+
+.index {
+  max-width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.top-ui {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.menu-ui-button-menu,
+.menu-ui-button-top,
+.menu-ui-button-year,
+.menu-ui-button-explore {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu-ui-button-menu2,
+.menu-ui-button-explore {
+  border: 1px solid #ffffff;
+  /* padding: 0px 10px; */
+}
+
+.menu,
+.portfolio-of-tokuno-kihiro,
+._2023-2024,
+.explore {
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.menu-overlay.active {
+  display: flex;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-item {
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.top-showcase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.showcase-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.showcase-image.active {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+
+  .menu,
+  .portfolio-of-tokuno-kihiro,
+  ._2023-2024,
+  .explore,
+  .menu-item {
+    font-size: 24px;
+  }
+
+  .top-ui {
+    padding: 10px;
+  }
+}

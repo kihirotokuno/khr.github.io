@@ -37,16 +37,17 @@ body {
 }
 
 .top-header {
-  background-color: #000000;
+  background-color: #ffffff;
+  width: 100vw;
   border-bottom: 1px solid #000000;
   padding: 20px;
   transition: background-color 0.3s ease;
-  position: relative;
+  position: absolute;
   z-index: 30;
 }
 
 .top-header:hover {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .header-navigation {
@@ -56,21 +57,21 @@ body {
 }
 
 .text-wrapper {
-  color: #FFFFFF;
+  color: #000000;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.8px;
   transition: color 0.3s ease;
   cursor: pointer;
 }
 
 .menu-button {
-  color: #FFFFFF;
+  color: #000000;
   background: none;
   border: none;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.8px;
   transition: color 0.3s ease;
@@ -78,25 +79,25 @@ body {
 
 .top-header:hover .text-wrapper,
 .top-header:hover .menu-button {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 .top-header.menu-active {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .top-header.menu-active .text-wrapper,
 .top-header.menu-active .menu-button {
-  color: #ffffff;
+  color: #000000;
 }
 
 .top-header.home-hover {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .top-header.home-hover .text-wrapper,
 .top-header.home-hover .menu-button {
-  color: #ffffff;
+  color: #000000;
 }
 
 
@@ -123,7 +124,7 @@ body {
   width: 20px;
   height: 20px;
   background-color: rgba(255, 255, 255, 0.8);
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   border-radius: 50%;
   cursor: ew-resize;
   z-index: 100;
@@ -199,6 +200,7 @@ body {
 }
 
 .menu-content {
+  border: 1px solid #000000;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-end;

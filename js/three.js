@@ -3,11 +3,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 let scene, camera, renderer, originalModel, pointCloud, controls;
+let originalTexture;
+
 let currentCameraIndex = 0;
 let isPointCloud = false;
-
-
-
 
 
 const cameraPositions = [
@@ -20,6 +19,7 @@ const cameraPositions = [
 
 const ASPECT_RATIO = 16 / 14;
 
+
 function init() {
   const container = document.getElementById('3dAvatar');
   if (!container) {
@@ -27,27 +27,6 @@ function init() {
     return;
   }
 
-  const pointCloudMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-      circleRadius: { value: 0.05 } // Adjust the circle radius as needed
-    },
-    vertexShader: `
-      uniform float circleRadius;
-
-      attribute vec3 position;
-
-      void main() {
-        vec3 transformedPosition = position;
-        gl_PointSize = circleRadius;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformedPosition, 1.0);
-      }
-    `,
-    fragmentShader: `
-      void main() {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0); // Black circles
-      }
-    }
-  });
 
 
   scene = new THREE.Scene();
@@ -72,7 +51,7 @@ function init() {
 
   const loader = new GLTFLoader();
   loader.load(
-    'js/threejs/metaMe.glb',
+    'js/threejs/metaMe1.glb',
     function (gltf) {
       originalModel = gltf.scene;
       setupModel(originalModel);
@@ -195,14 +174,12 @@ function animate() {
     originalModel.rotation.z += 0.01;
   }
 
-  controls.update();
   renderer.render(scene, camera);
 }
 
 function onWindowResize() {
   updateRendererSize();
   updateCamera();
-  controls.update();
 }
 
 window.addEventListener('DOMContentLoaded', init);

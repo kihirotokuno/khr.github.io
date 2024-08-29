@@ -161,11 +161,24 @@ new p5(function (p) {
 
   };
 
-  p.windowResized = function () {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
-    Matter.Body.setPosition(walls[0], { x: p.width / 2, y: p.height + 50 });
-    Matter.Body.setPosition(walls[2], { x: p.width + 50, y: p.height / 2 });
-  };
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+
+    // オブジェクトの存在チェックを追加
+    if (engine && engine.world && engine.world.bodies) {
+      engine.world.bodies.forEach(body => {
+        if (body && body.position) {
+          Matter.Body.setPosition(body, {
+            x: body.position.x * windowWidth / prevWidth,
+            y: body.position.y * windowHeight / prevHeight
+          });
+        }
+      });
+    }
+
+    prevWidth = windowWidth;
+    prevHeight = windowHeight;
+  }
 
   p.mousePressed = function () {
     if (!isMenuActive) return;
