@@ -107,7 +107,7 @@ function createPointCloud(model) {
 
   const material = new THREE.PointsMaterial({
     color: 0x000000,  // Black points
-    size: 1.0,
+    size: 40.0,
     sizeAttenuation: true
   });
 

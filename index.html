@@ -2,53 +2,120 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-        <title>TOKUNO KIHIRO</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio of Tokuno Kihiro</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="loading-screen">
-            <canvas id="loading-canvas"></canvas>
-            <div class="loading-text">TOKUNO KIHIRO</div>
-        </div>
-        <div class="iphonemini">
-            <div class="top-wrapper">
-                <div class="top">
-                    <header class="top-header">
-                        <nav class="header-navigation">
-                            <div class="text-wrapper" id="home-link">TOKUNO KIHIRO</div>
-                            <div class="menu-button">MENU</div>
-                        </nav>
-                    </header>
+        <!-- <div class="buttons" id="buttonContainer">
+            <button class="nav-button" id="menuButton-top"></button>
+        </div> -->
+        <button class="nav-button" id="navButton-top"></button>
 
-                    <main class="top-showcase" role="main">
-                        <img src="img/showcase_1.png" class="showcase-image active" alt="Showcase image 1" />
-                        <img src="img/showcase_2.png" class="showcase-image" alt="Showcase image 2" />
-                        <img src="img/showcase_3.png" class="showcase-image" alt="Showcase image 3" />
-                        <img src="img/showcase_4.png" class="showcase-image" alt="Showcase image 4" />
-                        <!-- <div class="left-container">
+        <!-- <div id="menuContainer"></div> -->
 
+        <div class="index" id="top">
+            <div id="menuOverlay">
+                <div class="menu-content">
+                    <div class="h-2">
+                        <div class="index2">INDEX</div>
+                        <div class="divider-vertical"></div>
+                        <div class="div">目次</div>
+                    </div>
+                    <div class="contents">
+                        <a href="#works" class="menu-item">WORKS</a>
+                        <a href="#experiment" class="menu-item">EXPERIMENT</a>
+                        <a href="#about" class="menu-item">ABOUT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="all">
+                <header class="header">
+                    <div class="h-1">
+                        <div class="title">TOKUNO KIHIRO</div>
+                    </div>
+                </header>
+
+                <div class="body-1" id="works">
+                    <div class="h-2">
+                        <div class="works">WORKS</div>
+                        <div class="divider-vertical"></div>
+                        <div class="div">作品</div>
+                    </div>
+                    <div class="search">
+                        <div class="_2024">2024</div>
+                        <div class="_2023">2023</div>
+                    </div>
+                    <div class="contents-1">
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
                         </div>
-                        <div class="resize-handle"></div> -->
-                    </main>
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                        </div>
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="menu-overlay">
-                        <div class="menu-content">
-                            <div class="menu-item">TOP</div>
-                            <div class="menu-item">WORKS</div>
-                            <div class="menu-item">ABOUT</div>
+                <div class="body-1" id="experiment">
+                    <div class="h-2">
+                        <div class="experiment2">EXPERIMENT</div>
+                        <div class="divider-vertical"></div>
+                        <div class="div">実験試作</div>
+                    </div>
+                    <div class="search">
+                        <div class="_2024">2024</div>
+                        <div class="_2023">2023</div>
+                    </div>
+                    <div class="contents-1">
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                        </div>
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                        </div>
+                        <div class="contents-2">
+                            <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="body-1" id="about">
+                    <div class="h-2">
+                        <div class="about">ABOUT</div>
+                        <div class="divider-vertical"></div>
+                        <div class="div">紹介</div>
+                    </div>
+                    <div class="body-2">
+                        <div class="contents-1">
+                            <div class="contents-2">
+                                <div class="ar">
+                                    学びのためのソフトウェアの領域における 探索的なコンピュータと人間のインタラクション
+                                    のデザインとエンジニアリング。
+                                    モバイル機器を用いたAR技術、ジェスチャー推定などを通信下で仮想共有させることで生まれる、コラボレーションを通じたエンターテイメント性を持つ新たなコミュニケーションのための手法を作ることに着目しています。
+                                </div>
+                                <div class="div2">とくのきひろ</div>
+                            </div>
+                            <div class="contents-2">
+                                <img class="img-works" src="img/works_talkativemuseum.jpg" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="bottom"></div>
         </div>
-        <div id="p5-canvas"></div>
-        <div class="slideshow-progress-bar"></div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
-        <script src="js/p5sketch.js"></script>
         <script src="js/script.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     </body>
 </html>

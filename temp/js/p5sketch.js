@@ -97,23 +97,6 @@ new p5(function (p) {
       Bodies.rectangle(p.width + 50, p.height / 2, 100, p.height, wallOptions),
     ];
     World.add(world, walls);
-
-    // Setup gyroscope event listener
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', handleOrientation);
-    }
-  };
-
-  p.setGyroData = function (x, y) {
-    gyroX = x;
-    gyroY = y;
-    gyroZ = z;
-
-    // Update gyro display
-    const gyroDisplay = document.getElementById('gyro-display');
-    if (gyroDisplay) {
-      gyroDisplay.textContent = `Gyro X: ${x.toFixed(2)}\nGyro Y: ${y.toFixed(2)}`;
-    }
   };
 
 
