@@ -1,22 +1,40 @@
-/* Base styles (mobile-first) */
-body {
-    margin-top: 40px;
-    margin-bottom: 200px;
+body,
+html {
+    margin: 0;
     padding: 0;
+    overflow-x: hidden;
     font-family: 'Inter', sans-serif;
+    color: #000aff;
+}
+
+#background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+}
+
+/* Ensure content is above the canvas */
+.index {
+    position: relative;
+    z-index: 1;
 }
 
 .index {
-    background: #ffffff;
     overflow-y: auto;
     height: auto;
+    z-index: 1;
 }
 
 .all {
-    padding: 20px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 500px;
+    gap: 300px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -67,8 +85,8 @@ body {
 
 .divider-vertical {
     width: 1.5px;
-    height: 30px;
-    border-right: 1.5px solid #454545;
+    height: 20px;
+    border-right: 1.5px solid #000aff;
 }
 
 .body-1 {
@@ -76,8 +94,7 @@ body {
     flex-direction: column;
     text-align: left;
     gap: 40px;
-    padding: 20px;
-    padding-top: 60px;
+    padding: 100px 20px 100px 20px;
 }
 
 .h-2 {
@@ -174,7 +191,7 @@ body {
 .menu-item {
     font-size: 20px;
     font-weight: 300;
-    color: black;
+    color: #000aff;
 }
 
 #menuContainer {
@@ -215,7 +232,8 @@ body {
 
 @media (max-width: 810px) {
     .all {
-        gap: 200px;
+        gap: 300px;
+        padding: 20px;
     }
 
     .title {
@@ -226,7 +244,7 @@ body {
     }
 
     .contents-1 {
-        padding: 0px 0px;
+        padding: 10px 10px;
         display: flex;
         flex-direction: column;
         justify-content: center; /* 縦方向に中央揃え */
@@ -235,7 +253,7 @@ body {
     }
     .contents-2 {
         width: 100%; /* コンテナ幅を100%に設定 */
-        align-items: center; /* contents-2の中身を中央揃え */
+        align-items: flex-start; /* contents-2の中身を中央揃え */
     }
 
     .nav-button {

@@ -7,13 +7,7 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <!-- <div class="buttons" id="buttonContainer">
-            <button class="nav-button" id="menuButton-top"></button>
-        </div> -->
-        <button class="nav-button" id="navButton-top"></button>
-
-        <!-- <div id="menuContainer"></div> -->
-
+        <canvas id="background-canvas"></canvas>
         <div class="index" id="top">
             <div id="menuOverlay">
                 <div class="menu-content">
@@ -49,15 +43,18 @@
                     <div class="contents-1">
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                            <div class="h-3">Talkative Museum: <br />おしゃべりミュージアム</div>
                         </div>
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                            <div class="h-3">
+                                Talkative Museum: <br />
+                                おしゃべりミュージアム
+                            </div>
                         </div>
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                            <div class="h-3">Talkative Museum: <br />おしゃべりミュージアム</div>
                         </div>
                     </div>
                 </div>
@@ -75,11 +72,11 @@
                     <div class="contents-1">
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                            <div class="h-3">Talkative Museum: <br />おしゃべりミュージアム</div>
                         </div>
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                            <div class="h-3">Talkative Museum: おしゃべりミュージアム</div>
+                            <div class="h-3">Talkative Museum: <br />おしゃべりミュージアム</div>
                         </div>
                         <div class="contents-2">
                             <img class="img-works" src="img/works_talkativemuseum.jpg" />
@@ -115,7 +112,18 @@
         </div>
 
         <script src="js/script.js"></script>
-        <script src="https://www.youtube.com/iframe_api"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
+                    "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js",
+                    "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.138.0/examples/jsm/loaders/GLTFLoader.js",
+                    "three/examples/jsm/modifiers/SimplifyModifier": "https://unpkg.com/three@0.138.0/examples/jsm/modifiers/SimplifyModifier.js",
+                    "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+                }
+            }
+        </script>
+        <script type="module" src="js/background.js"></script>
     </body>
 </html>
