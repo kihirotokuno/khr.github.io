@@ -75,8 +75,8 @@ function init() {
   // Load custom 3D model
   loadCustomModel();
 
-  // Create wireframe cube
-  createWireframeCube();
+  // // Create wireframe cube
+  // createWireframeCube();
 
   // Event listeners
   window.addEventListener('resize', onWindowResize);
