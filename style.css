@@ -4,7 +4,6 @@ html {
     padding: 0;
     overflow-x: hidden;
     font-family: 'Inter', sans-serif;
-    color: #000aff;
 }
 
 #background-canvas {
@@ -38,11 +37,11 @@ html {
 }
 
 .all-works {
-    padding: 40px 200px;
+    padding: 40px 40px;
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 80px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -90,13 +89,13 @@ html {
 }
 
 .divider-horizontal {
-    border-bottom: 1.5px solid #000aff;
+    border-bottom: 1.5px solid;
 }
 
 .divider-vertical {
     width: 1.5px;
     height: 20px;
-    border-right: 1.5px solid #000aff;
+    border-right: 1.5px solid;
 }
 
 .body-1 {
@@ -104,7 +103,7 @@ html {
     flex-direction: column;
     text-align: left;
     gap: 40px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 0px 20px 0px;
 }
 
 .body-1-works {
@@ -112,7 +111,15 @@ html {
     flex-direction: column;
     text-align: left;
     gap: 20px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 0px 20px 0px;
+}
+
+.body-1-exp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: left; */
+    padding: 20px 0px 20px 0px;
 }
 
 .h-1 {
@@ -120,6 +127,7 @@ html {
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    font-size: 64px;
     gap: 20px;
 }
 
@@ -129,7 +137,7 @@ html {
     justify-content: left;
     align-items: center;
     text-align: left;
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 400;
     gap: 20px;
 }
@@ -147,6 +155,18 @@ html {
 }
 
 .h-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 400;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.h-4 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -161,7 +181,7 @@ html {
 
 }
 
-.h-3:hover {
+.h-4:hover {
     background-color: #BBBDFF;
     /* Change this to your desired hover color */
 }
@@ -214,11 +234,32 @@ html {
     gap: 10px;
 }
 
+.contents-4 {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    gap: 20px;
+}
+
+.text {
+    font: 16px;
+    font-weight: 200;
+}
+
+/* .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    align-self: stretch;
+    flex-wrap: wrap;
+} */
+
 .img-works {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border: 1px solid #000aff;
+    border: 1.5px solid #000aff;
 }
 
 .img-works::after {
@@ -253,14 +294,12 @@ html {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    padding: 20px 0px;
 }
 
 .img-196 {
     width: 100%;
     aspect-ratio: 19 / 6;
     object-fit: cover;
-    padding: 20px 0px;
 }
 
 
@@ -304,12 +343,30 @@ html {
 
 .callout {
     background-color: aliceblue;
-    margin: 20px;
-
+    padding: 20px;
 }
 
 .a {
     text-decoration: none;
+}
+
+.color-index {
+    color: #000aff;
+}
+
+.color-mem {
+    background-color: #FFF5E6;
+    color: #774800;
+}
+
+.color-ttm {
+    background-color: #FFF5E6;
+    color: #000aff;
+}
+
+.color-lsh {
+    background-color: #E1EDFF;
+    color: #000aff;
 }
 
 #menuContainer {
@@ -355,7 +412,7 @@ html {
     }
 
     .all-works {
-        gap: 40px;
+        gap: 60px;
         padding: 20px;
     }
 
@@ -365,6 +422,22 @@ html {
         font-weight: 700;
     }
 
+    .h-1 {
+        font-size: 32px;
+    }
+
+    .h-2 {
+        font-size: 20px;
+    }
+
+    .h-3 {
+        font-size: 16px;
+    }
+
+    .text {
+        font: 14px;
+        font-weight: 200;
+    }
 
 
     .contents-1 {
@@ -397,4 +470,6 @@ html {
     .menu {
         display: none;
     }
+
+
 }
