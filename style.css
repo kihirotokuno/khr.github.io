@@ -4,6 +4,8 @@ html {
     padding: 0;
     overflow-x: hidden;
     font-family: 'Inter', sans-serif;
+    overscroll-behavior-y: none;
+
 }
 
 #background-canvas {
@@ -35,6 +37,7 @@ html {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .all-works {
@@ -46,6 +49,8 @@ html {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-y: auto;
+
 }
 
 .header {
@@ -182,10 +187,7 @@ html {
 
 }
 
-.h-4:hover {
-    background-color: #BBBDFF;
-    /* Change this to your desired hover color */
-}
+
 
 .search {
     display: flex;
@@ -227,8 +229,6 @@ html {
     /* gap: 20px; */
 }
 
-
-
 .contents-3 {
     max-width: 800px;
     gap: 10px;
@@ -263,9 +263,7 @@ html {
     border: 1.5px solid #000aff;
 }
 
-.img-works::after {
-    color: #BBBDFF;
-}
+
 
 .img-large {
     position: relative;
@@ -343,7 +341,9 @@ html {
 }
 
 .callout {
-    background-color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.05);
+    /* 10%の透明度の黒 */
+    mix-blend-mode: multiply;
     padding: 20px;
 }
 
@@ -362,13 +362,18 @@ a {
 }
 
 .color-ttm {
-    background-color: #FFF5E6;
-    color: #000aff;
+    background-color: #F0FFE1;
+    color: #005914;
 }
 
 .color-lsh {
     background-color: #E1EDFF;
     color: #000aff;
+}
+
+.color-ide {
+    background-color: #474747;
+    color: #D8FDFF;
 }
 
 #menuContainer {
@@ -409,7 +414,7 @@ a {
 
 @media (max-width: 840px) {
     .all {
-        gap: 300px;
+        gap: 150px;
         padding: 20px;
     }
 
@@ -440,9 +445,12 @@ a {
         font-weight: 200;
     }
 
+    .hidden {
+        display: none;
+    }
 
     .contents-1 {
-        /* padding: 10px 10px; */
+        padding: 10px 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
