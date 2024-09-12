@@ -234,7 +234,7 @@ function loadCustomModel() {
     'model/metaMe1.glb',
     (gltf) => {
       customModel = gltf.scene;
-      customModel.scale.set(10, 10, 10);
+      customModel.scale.set(8, 8, 8);
 
       customModel.traverse((child) => {
         if (child.isMesh) {
@@ -256,7 +256,7 @@ function loadCustomModel() {
       customModelBody = new CANNON.Body({
         mass: 1,
         shape: shape,
-        position: new CANNON.Vec3(0, 5, 0),
+        position: new CANNON.Vec3(2, 5, 0),
         material: new CANNON.Material({ restitution: 0.01 }),
         angularDamping: NORMAL_ANGULAR_DAMPING
       });
