@@ -179,7 +179,7 @@ function createWalls(frustumSize, aspect) {
 function createWireframeCube() {
   const geometry = new THREE.BoxGeometry(2, 2, 2);
   const edges = new THREE.EdgesGeometry(geometry);
-  wireframeCube = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000aff }));
+  wireframeCube = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x272727 }));
   wireframeCube.position.set(2, 0, 0);
   scene.add(wireframeCube);
 
@@ -201,7 +201,7 @@ function createCube() {
   const size = Math.random() * 1.5 + 0.5; // Random size between 0.5 and 1
   const geometry = new THREE.BoxGeometry(size, size, size);
   const edges = new THREE.EdgesGeometry(geometry);
-  const material = new THREE.LineBasicMaterial({ color: 0x000aff });
+  const material = new THREE.LineBasicMaterial({ color: 0x272727 });
   const wireframe = new THREE.LineSegments(edges, material);
 
   const frustumSize = 10;
@@ -234,12 +234,16 @@ function loadCustomModel() {
     'model/metaMe1.glb',
     (gltf) => {
       customModel = gltf.scene;
-      customModel.scale.set(10, 10, 10);
+
+      // モデルのスケールを一度だけ設定
+      const isMobile = window.innerWidth <= 768;
+      const scale = isMobile ? 5 : 10;
+      customModel.scale.set(scale, scale, scale);
 
       customModel.traverse((child) => {
         if (child.isMesh) {
           const wireframeMaterial = new THREE.MeshBasicMaterial({
-            color: 0x000aff,
+            color: 0x272727,
             wireframe: true,
             wireframeLinewidth: 1
           });
