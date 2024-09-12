@@ -157,7 +157,7 @@ html {
     font-size: 20px;
     font-weight: 400;
     padding: 5px;
-    border: 1.5px solid#000aff;
+    border: 1.5px solid#272727;
 }
 
 .h-3 {
@@ -181,7 +181,7 @@ html {
     /* テキストを通常通り折り返す */
     line-height: 1.2;
     /* 行間を設定 */
-    border: 1.5px solid #000aff;
+    border: 1.5px solid #272727;
     border-top: 0px;
     padding: 10px;
 
@@ -260,7 +260,7 @@ html {
     min-width: 300px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border: 1.5px solid #000aff;
+    border: 1.5px solid #272727;
 }
 
 
@@ -273,13 +273,6 @@ html {
 
     /* border: 1px solid #000aff; */
 }
-
-/* .img-large {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-
-}*/
 
 .img-large iframe {
     position: absolute;
@@ -309,7 +302,7 @@ html {
     top: 40px;
     width: 60px;
     height: 60px;
-    border: 4px solid black;
+    border: 4px solid #272727;
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
@@ -352,8 +345,9 @@ a {
     text-decoration: none;
 }
 
+/*
 .color-index {
-    color: #000aff;
+    color: #272727;
 }
 
 .color-mem {
@@ -374,6 +368,30 @@ a {
 .color-ide {
     background-color: #474747;
     color: #D8FDFF;
+} */
+
+.color-index {
+    color: #272727;
+}
+
+.color-mem {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-ttm {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-lsh {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-ide {
+    background-color: #ffffff;
+    color: #272727;
 }
 
 #menuContainer {
