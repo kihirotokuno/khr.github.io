@@ -211,7 +211,6 @@ html {
     align-content: space-between;
     align-self: stretch;
     flex-wrap: wrap;
-
     gap: 40px;
 }
 
