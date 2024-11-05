@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/khr.github.io/static/css/main.54436a88.css",
+    "main.js": "/khr.github.io/static/js/main.f0a061e1.js",
+    "static/js/453.622c4816.chunk.js": "/khr.github.io/static/js/453.622c4816.chunk.js",
+    "index.html": "/khr.github.io/index.html",
+    "main.54436a88.css.map": "/khr.github.io/static/css/main.54436a88.css.map",
+    "main.f0a061e1.js.map": "/khr.github.io/static/js/main.f0a061e1.js.map",
+    "453.622c4816.chunk.js.map": "/khr.github.io/static/js/453.622c4816.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.54436a88.css",
+    "static/js/main.f0a061e1.js"
+  ]
+}
