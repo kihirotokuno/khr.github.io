@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sky-timer/static/css/main.54436a88.css",
+    "main.js": "/sky-timer/static/js/main.06a50de0.js",
+    "static/js/453.622c4816.chunk.js": "/sky-timer/static/js/453.622c4816.chunk.js",
+    "index.html": "/sky-timer/index.html",
+    "main.54436a88.css.map": "/sky-timer/static/css/main.54436a88.css.map",
+    "main.06a50de0.js.map": "/sky-timer/static/js/main.06a50de0.js.map",
+    "453.622c4816.chunk.js.map": "/sky-timer/static/js/453.622c4816.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.54436a88.css",
+    "static/js/main.06a50de0.js"
+  ]
+}
