@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main,
+.main * {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  /* フォールバック */
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.visualization-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.three-js-container,
+.recharts-container,
+.waveform-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.three-js-container {
+  z-index: 1;
+}
+
+.recharts-container {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.waveform-canvas {
+  z-index: 3;
+  opacity: 0.0;
+}
+
+.controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.controls div {
+  margin-bottom: 10px;
+}
+
+.controls label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.controls input {
+  width: 100%;
+}
+
+.top {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 10;
+}
+
+.div {
+  color: #000aff;
+  text-align: center;
+  font-family: 'NotoSansJp-Regular', sans-serif;
+  font-size: 64px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  font-weight: 200;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  z-index: 10;
+}
+
+.button {
+  border-radius: 98px;
+  border-style: solid;
+  border-color: #000aff;
+  border-width: 2px;
+  padding: 35px 31px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 127px;
+  height: 127px;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+}
+
+.button.clicked {
+  border-radius: 0px;
+}
+
+.div2 {
+  color: #000aff;
+  text-align: center;
+  font-family: 'NotoSansJp-Regular', sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  font-weight: 200;
+}
+
+canvas {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .top {
+    top: 20px;
+    left: 20px;
+  }
+
+  .bottom {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .div {
+    font-size: 48px;
+  }
+
+  .button {
+    width: 100px;
+    height: 100px;
+    padding: 25px 21px;
+  }
+
+  .div2 {
+    font-size: 14px;
+  }
+}

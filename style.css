@@ -4,6 +4,8 @@ html {
     padding: 0;
     overflow-x: hidden;
     font-family: 'Inter', sans-serif;
+    overscroll-behavior-y: none;
+
 }
 
 #background-canvas {
@@ -35,6 +37,7 @@ html {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .all-works {
@@ -46,6 +49,8 @@ html {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-y: auto;
+
 }
 
 .header {
@@ -152,7 +157,7 @@ html {
     font-size: 20px;
     font-weight: 400;
     padding: 5px;
-    border: 1.5px solid#000aff;
+    border: 1.5px solid#272727;
 }
 
 .h-3 {
@@ -176,16 +181,13 @@ html {
     /* テキストを通常通り折り返す */
     line-height: 1.2;
     /* 行間を設定 */
-    border: 1.5px solid #000aff;
+    border: 1.5px solid #272727;
     border-top: 0px;
     padding: 10px;
 
 }
 
-.h-4:hover {
-    background-color: #BBBDFF;
-    /* Change this to your desired hover color */
-}
+
 
 .search {
     display: flex;
@@ -211,7 +213,6 @@ html {
     align-content: space-between;
     align-self: stretch;
     flex-wrap: wrap;
-
     gap: 40px;
 }
 
@@ -227,8 +228,6 @@ html {
     flex: 0 0 auto;
     /* gap: 20px; */
 }
-
-
 
 .contents-3 {
     max-width: 800px;
@@ -261,12 +260,10 @@ html {
     min-width: 300px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border: 1.5px solid #000aff;
+    border: 1.5px solid #272727;
 }
 
-.img-works::after {
-    color: #BBBDFF;
-}
+
 
 .img-large {
     position: relative;
@@ -276,13 +273,6 @@ html {
 
     /* border: 1px solid #000aff; */
 }
-
-/* .img-large {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-
-}*/
 
 .img-large iframe {
     position: absolute;
@@ -312,7 +302,7 @@ html {
     top: 40px;
     width: 60px;
     height: 60px;
-    border: 4px solid black;
+    border: 4px solid #272727;
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
@@ -344,16 +334,20 @@ html {
 }
 
 .callout {
-    background-color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.05);
+    /* 10%の透明度の黒 */
+    mix-blend-mode: multiply;
     padding: 20px;
 }
 
-.a {
+a {
+    color: inherit;
     text-decoration: none;
 }
 
+/*
 .color-index {
-    color: #000aff;
+    color: #272727;
 }
 
 .color-mem {
@@ -362,13 +356,42 @@ html {
 }
 
 .color-ttm {
-    background-color: #FFF5E6;
-    color: #000aff;
+    background-color: #F0FFE1;
+    color: #005914;
 }
 
 .color-lsh {
     background-color: #E1EDFF;
     color: #000aff;
+}
+
+.color-ide {
+    background-color: #474747;
+    color: #D8FDFF;
+} */
+
+.color-index {
+    color: #272727;
+}
+
+.color-mem {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-ttm {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-lsh {
+    background-color: #ffffff;
+    color: #272727;
+}
+
+.color-ide {
+    background-color: #ffffff;
+    color: #272727;
 }
 
 #menuContainer {
@@ -409,7 +432,7 @@ html {
 
 @media (max-width: 840px) {
     .all {
-        gap: 300px;
+        gap: 150px;
         padding: 20px;
     }
 
@@ -440,9 +463,12 @@ html {
         font-weight: 200;
     }
 
+    .hidden {
+        display: none;
+    }
 
     .contents-1 {
-        /* padding: 10px 10px; */
+        padding: 10px 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
