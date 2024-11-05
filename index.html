@@ -1,139 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Portfolio of Tokuno Kihiro</title>
-        <link rel="stylesheet" href="style.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+        <link rel="stylesheet" href="./index.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400&display=swap" />
     </head>
     <body>
-        <canvas id="background-canvas"></canvas>
-        <div class="index color-index" id="top">
-            <div id="menuOverlay">
-                <div class="menu-content">
-                    <div class="h-2">
-                        <div class="index2">INDEX</div>
-                        <div class="divider-vertical"></div>
-                        <div class="div">目次</div>
+        <div class="navigation-parent">
+            <div class="navigation">
+                <div class="all">
+                    <div class="header">
+                        <div class="h1">
+                            <div class="tokuno">TOKUNO</div>
+                            <div class="kihiro">KIHIRO</div>
+                        </div>
+                        <div class="h2">
+                            <div class="works">WORKS</div>
+                            <div class="div">ワークス</div>
+                        </div>
                     </div>
-                    <div class="contents">
-                        <a href="#works" class="menu-item">WORKS</a>
-                        <a href="#experiment" class="menu-item">EXPERIMENT</a>
-                        <a href="#about" class="menu-item">ABOUT</a>
-                    </div>
-                </div>
-            </div>
-            <div class="all">
-                <header class="header">
-                    <div class="h-1">
-                        <div class="title">TOKUNO KIHIRO</div>
-                        <!-- <div class="h-2">
-                            <div class="div menu">WORKS</div>
-                            <div class="div menu">EXPERIMENT</div>
-                            <div class="div menu">ABOUT</div>
-                        </div> -->
-                    </div>
-                </header>
-
-                <div class="body-1" id="works">
-                    <div class="h-2">
-                        <div class="works">RESEARCH</div>
-                        <div class="divider-vertical"></div>
-                        <div class="div">研究</div>
-                    </div>
-
-                    <div class="contents-1">
-                        <a href="works_ttm.html">
-                            <div class="contents-2">
-                                <img class="img-works" src="img/works_talkativemuseum.jpg" />
-                                <div class="h-4">Talkative Museum: <br />おしゃべりミュージアム</div>
-                                <div class="h-4">2024</div>
-                            </div>
-                        </a>
-                        <a href="works_mem.html">
-                            <div class="contents-2">
-                                <img class="img-works" src="img/works_mem.jpg" />
-                                <div class="h-4">Memorium: 記憶の博物館</div>
-                                <div class="h-4">2023</div>
-                            </div>
-                        </a>
-                        <a href="works_lsh.html">
-                            <div class="contents-2">
-                                <img class="img-works" src="img/works_ltwh.jpg" />
-                                <div class="h-4">Lets Talk with HANDS</div>
-                                <div class="h-4">2022</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="body-1" id="works">
-                    <div class="h-2">
-                        <div class="works">WORKS</div>
-                        <div class="divider-vertical"></div>
-                        <div class="div">作品</div>
-                    </div>
-
-                    <div class="contents-1">
-                        <a href="works_ide.html">
-                            <div class="contents-2">
-                                <img class="img-works" src="img/works_ide.jpg" />
-                                <div class="h-4">Identity by imaginative language</div>
-                                <div class="h-4">2022</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="body-1" id="experiment">
-                    <div class="h-2">
-                        <div class="experiment2">EXPERIMENT</div>
-                        <div class="divider-vertical"></div>
-                        <div class="div">実験試作</div>
-                    </div>
-                    <!-- <div class="search">
-                        <div class="_2024">2024</div>
-                        <div class="_2023">2023</div>
+                    <!-- <div class="h-1">
+                        <div class="header">
+                            <div class="tokuno">TOKUNO</div>
+                            <div class="kihiro">KIHIRO</div>
+                        </div>
                     </div> -->
-                    <div class="contents-1">
-                        <div class="contents-2">
-                            <img class="img-works" src="img/works_update.jpg" />
-                            <div class="h-4">Under construction</div>
-                            <div class="h-4">Soon</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="body-1" id="about">
-                    <div class="h-2">
-                        <div class="about">ABOUT</div>
-                        <div class="divider-vertical"></div>
-                        <div class="div">紹介</div>
+                    <div class="works">
+                        <!-- <div class="h2">
+                            <div class="works1">WORKS</div>
+                            <div class="div4">ワークス</div>
+                        </div> -->
+                        <img class="project-icon" alt="" src="img/works_talkativemuseum.jpg" />
+
+                        <img class="profile-icon" alt="" src="project.png" />
+
+                        <img class="profile-icon" alt="" src="project.png" />
+
+                        <img class="profile-icon" alt="" src="project.png" />
+
+                        <img class="profile-icon" alt="" src="project.png" />
                     </div>
-                    <div class="body-2">
-                        <div class="contents-1">
-                            <div class="contents-2">
-                                <div class="ar">
-                                    学びのためのソフトウェアの領域における 探索的なコンピュータと人間のインタラクション
-                                    のデザインとエンジニアリング。
-                                    モバイル機器を用いたAR技術、ジェスチャー推定などを通信下で仮想共有させることで生まれる、コラボレーションを通じたエンターテイメント性を持つ新たなコミュニケーションのための手法を作ることに着目しています。
-                                </div>
-                                <div class="div2">とくのきひろ</div>
-                            </div>
-                            <div class="contents-2">
-                                <img class="img-works" src="img/img_me.jpg" />
-                            </div>
+                    <div class="about">
+                        <div class="h21">
+                            <div class="about1">ABOUT</div>
                         </div>
+                        <img class="profile-icon" alt="" src="profile.png" />
                     </div>
                 </div>
             </div>
-            <div class="body-1">
-                <div class="divider-horizontal bottom"></div>
-            </div>
+            <div class="divider-horizontal"></div>
+
+            <div id="background-canvas" class="three-canvas"></div>
         </div>
 
-        <script src="js/script.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
         <script type="importmap">
             {
                 "imports": {

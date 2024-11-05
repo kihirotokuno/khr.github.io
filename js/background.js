@@ -10,11 +10,11 @@ let wireframeTripod, wireframeTripodBody;
 let objects = [];
 
 let DEPTH = 5;
-const SPAWN_INTERVAL = 2000;
+const SPAWN_INTERVAL = 3000;
 let spawnTimer = 0;
-const MAX_OBJECTS = 20;
+const MAX_OBJECTS = 15;
 
-let interactionState = 'gravity'; // 'gravity', 'floating', 'falling'
+let interactionState = 'floating'; // 'gravity', 'floating', 'falling'
 let mousePosition = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 
@@ -222,10 +222,19 @@ function createCube() {
     angularDamping: NORMAL_ANGULAR_DAMPING
   });
 
-  // crea
   world.addBody(body);
 
   objects.push({ mesh: wireframe, body });
+
+  if (objects.length > MAX_OBJECTS) {
+    removeOldestCube();
+  }
+}
+
+function removeOldestCube() {
+  const oldestObject = objects.shift(); // Remove the first (oldest) object
+  scene.remove(oldestObject.mesh); // Remove from Three.js scene
+  world.removeBody(oldestObject.body); // Remove from Cannon.js world
 }
 
 function loadCustomModel() {
@@ -293,7 +302,7 @@ function resetScene() {
 
 
 function onMouseMove(event) {
-  mousePosition.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mousePosition.x = -((event.clientX / window.innerWidth) * 2 - 1);
   mousePosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
@@ -332,10 +341,10 @@ function animate(time) {
     spawnTimer = time;
   }
 
-  // Check if canvas is filled
-  if (objects.length >= MAX_OBJECTS) {
-    resetScene();
-  }
+  // // Check if canvas is filled
+  // if (objects.length >= MAX_OBJECTS) {
+  //   resetScene();
+  // }
 
   renderer.render(scene, camera);
 }
@@ -482,3 +491,74 @@ window.addEventListener('scroll', () => {
 });
 
 init();
+
+
+function placeRandomWords() {
+  const header = document.querySelector('.header');
+  const words = [
+    { text: "TOKUNO", element: document.querySelector('.tokuno') },
+    { text: "KIHIRO", element: document.querySelector('.kihiro') },
+    { text: "トクノ", element: document.querySelector('.div') },
+    { text: "キヒロ", element: document.querySelector('.div1') },
+    { text: "徳野", element: document.querySelector('.div:nth-child(5)') },
+    { text: "稀太", element: document.querySelector('.div:nth-child(6)') }
+  ];
+
+  const headerHeight = header.clientHeight;
+  const leftMargin = 20; // Pixels from the left for left alignment
+  const topMargin = 20;  // Pixels of margin between the words
+  const rotations = [0, 15, -15, 30, -30]; // Rotation angles
+  const placedPositions = []; // To keep track of placed word positions
+
+  function getRandomVerticalPosition(height) {
+    return Math.random() * (headerHeight - height);
+  }
+
+  function isOverlapping(newTop, newHeight) {
+    return placedPositions.some(pos => {
+      // Adjust for top margin to add spacing between words
+      return !(newTop + newHeight + topMargin < pos.top || newTop > pos.top + pos.height + topMargin);
+    });
+  }
+
+  function placeWord(wordObj) {
+    const wordElement = wordObj.element;
+
+    // Check if the word element exists before proceeding
+    if (!wordElement) {
+      console.warn(`Element for ${wordObj.text} not found.`);
+      return; // Skip to the next word if element doesn't exist
+    }
+
+    const wordHeight = wordElement.offsetHeight;
+
+    let y, attempts = 0, maxAttempts = 100; // Max attempts to avoid infinite loops
+    do {
+      y = getRandomVerticalPosition(wordHeight);
+      attempts++;
+    } while (isOverlapping(y, wordHeight) && attempts < maxAttempts);
+
+    // If too many attempts are made, just place it anywhere (last resort)
+    if (attempts >= maxAttempts) {
+      console.warn('Too many attempts to avoid overlap, placing anyway.');
+    }
+
+    // Apply random rotation from predefined set
+    const rotation = rotations[Math.floor(Math.random() * rotations.length)];
+
+    // Apply styles for left alignment, random vertical position, and rotation
+    wordElement.style.position = 'absolute';
+    wordElement.style.left = `${leftMargin}px`;  // Left aligned
+    wordElement.style.top = `${y}px`;
+    wordElement.style.transform = `rotate(${rotation}deg)`;
+
+    // Store the placed position to check for future overlap
+    placedPositions.push({ top: y, height: wordHeight });
+  }
+
+  // Place all the words using the procedural algorithm with collision detection
+  words.forEach(word => placeWord(word));
+}
+
+// Call the function when the window loads
+window.onload = placeRandomWords;
